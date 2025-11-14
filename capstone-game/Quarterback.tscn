@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://degxoga3wq3oi"]
+
+[ext_resource type="Script" uid="uid://c7v7yeughi3p2" path="res://quarterback.gd" id="1_7t48y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4jtx6"]
+radius = 0.4
+height = 1.2
+
+[node name="Quarterback" type="CharacterBody3D"]
+script = ExtResource("1_7t48y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_4jtx6")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 0.9848078, 0.1736482, 0, -0.1736482, 0.9848078, 0, 1.6, 0)

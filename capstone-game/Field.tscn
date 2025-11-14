@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://cr64oifdvch2i"]
+
+[ext_resource type="PackedScene" uid="uid://degxoga3wq3oi" path="res://Quarterback.tscn" id="1_8j5rm"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0m6is"]
+sky_top_color = Color(0.16647446, 0.47030658, 0.6991369, 1)
+sky_horizon_color = Color(0.93065536, 1.1004189, 1.0675664, 1)
+ground_bottom_color = Color(0.28866783, 0.6638899, 0.30364937, 1)
+ground_horizon_color = Color(0.93065536, 1.1004189, 1.0675664, 1)
+
+[sub_resource type="Sky" id="Sky_8j5rm"]
+sky_material = SubResource("ProceduralSkyMaterial_0m6is")
+
+[sub_resource type="Environment" id="Environment_7sdab"]
+background_mode = 2
+sky = SubResource("Sky_8j5rm")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0m6is"]
+size = Vector2(30, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8j5rm"]
+albedo_color = Color(0.29803923, 0.6862745, 0.3137255, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7sdab"]
+size = Vector3(30, 0, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0m6is"]
+size = Vector3(5, 0.3, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8j5rm"]
+size = Vector3(0.3, 0.3, 30)
+
+[node name="Field" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7sdab")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_0m6is")
+surface_material_override/0 = SubResource("StandardMaterial3D_8j5rm")
+
+[node name="Ground Collission" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground Collission"]
+shape = SubResource("BoxShape3D_7sdab")
+debug_color = Color(0.7128054, 0.41881114, 0.6452741, 0.41960785)
+
+[node name="EndzoneA" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371138e-08, 0, -0.9999998, 0, 1, 0, 0.9999998, 0, -4.371138e-08, 0, 0, 22.5)
+mesh = SubResource("BoxMesh_0m6is")
+
+[node name="EndzoneB" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00015703589, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -0.00015703589, 0, 0, -22.5)
+mesh = SubResource("BoxMesh_0m6is")
+
+[node name="MidfieldLine" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_8j5rm")
+
+[node name="QuarterFieldLineA" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 10)
+mesh = SubResource("BoxMesh_8j5rm")
+
+[node name="QuarterFieldLineB" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -10)
+mesh = SubResource("BoxMesh_8j5rm")
+
+[node name="Quarterback" parent="." instance=ExtResource("1_8j5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.654442, 0, 16.968502)
