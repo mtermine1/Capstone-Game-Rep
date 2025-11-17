@@ -1,17 +1,24 @@
 extends CharacterBody3D
 
 @export var speed: float = 4.0
-@export var cover_distance: float = 3.0
+@export var cushion: float = 6.0
+@export var reaction_time: float = 0.6
 @export var blitz_delay: float = 7.0
-@export var mode: String = "cover"   # "cover" or "blitz"
-@export var target: Node3D            # receiver to cover
-@export var qb: Node3D  
+@export var mode: String = "cover"
+
+@export var target: Node3D
+@export var qb: Node3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var blitz_started := false
+var reaction_timer := 0.0
 var blitz_timer := 0.0
+var blitz_started := false
 
 func _physics_process(delta):
+	if qb and not qb.play_started:
+		velocity = Vector3.ZERO
+		return
+
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
@@ -25,27 +32,31 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-
 func run_man_coverage(delta):
+	reaction_timer += delta
+	if reaction_timer < reaction_time:
+		velocity.x = 0
+		velocity.z = 0
+		return
+
 	var target_pos = target.global_position
 	var my_pos = global_position
+	var dist = my_pos.distance_to(target_pos)
 
-	# Stay behind the receiver by cover_distance
-	var desired_pos = target_pos + Vector3(0, 0, cover_distance)
-
-	var dir = (desired_pos - my_pos).normalized()
-
-	velocity.x = dir.x * speed
-	velocity.z = dir.z * speed
-
+	if dist > cushion:
+		var chase_dir = (target_pos - my_pos).normalized()
+		velocity.x = chase_dir.x * speed
+		velocity.z = chase_dir.z * speed
+	else:
+		velocity.x = lerp(velocity.x, 0.0, 0.1)
+		velocity.z = lerp(velocity.z, 0.0, 0.1)
 
 func run_blitz(delta):
 	blitz_timer += delta
-
 	if blitz_timer >= blitz_delay:
 		blitz_started = true
 
 	if blitz_started:
 		var dir = (qb.global_position - global_position).normalized()
-		velocity.x = dir.x * speed * 1.4   # slightly faster blitz
+		velocity.x = dir.x * speed * 1.4
 		velocity.z = dir.z * speed * 1.4

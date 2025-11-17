@@ -76,14 +76,21 @@ mesh = SubResource("BoxMesh_8j5rm")
 [node name="Quarterback" parent="." instance=ExtResource("1_8j5rm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 15)
 
-[node name="Receiver" parent="." instance=ExtResource("2_7sdab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 15)
+[node name="Receiver" parent="." node_paths=PackedStringArray("qb") instance=ExtResource("2_7sdab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 15)
+qb = NodePath("../Quarterback")
 
-[node name="DefenderCover" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_m6s6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 9.388838)
+[node name="DefenderCover" parent="." node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 11.268772)
+cushion = 1.0
+reaction_time = 0.0
+blitz_delay = 6.0
 target = NodePath("../Receiver")
+qb = NodePath("../Quarterback")
 
 [node name="DefenderBlitz" parent="." node_paths=PackedStringArray("qb") instance=ExtResource("3_m6s6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06354594, 0.75, 8.328519)
+speed = 3.5
+reaction_time = 1.0
 mode = "blitz"
 qb = NodePath("../Quarterback")
