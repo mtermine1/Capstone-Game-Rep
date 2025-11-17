@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2r626ewshqui"]
+[gd_scene load_steps=4 format=3 uid="uid://d2r626ewshqui"]
+
+[ext_resource type="Script" uid="uid://258pxcdv1iig" path="res://receiver.gd" id="1_j7om1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vmpl1"]
+height = 1.6
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oikqh"]
+height = 1.6
 
 [node name="Receiver" type="CharacterBody3D"]
+script = ExtResource("1_j7om1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_vmpl1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_oikqh")

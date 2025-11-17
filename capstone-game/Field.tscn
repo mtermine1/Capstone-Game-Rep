@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr64oifdvch2i"]
+[gd_scene load_steps=12 format=3 uid="uid://cr64oifdvch2i"]
 
 [ext_resource type="PackedScene" uid="uid://degxoga3wq3oi" path="res://Quarterback.tscn" id="1_8j5rm"]
+[ext_resource type="PackedScene" uid="uid://d2r626ewshqui" path="res://Receiver.tscn" id="2_7sdab"]
+[ext_resource type="PackedScene" uid="uid://bmoychwdya5uk" path="res://Defender.tscn" id="3_m6s6n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0m6is"]
 sky_top_color = Color(0.16647446, 0.47030658, 0.6991369, 1)
@@ -68,8 +70,20 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 mesh = SubResource("BoxMesh_8j5rm")
 
 [node name="QuarterFieldLineB" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -10)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 15)
 mesh = SubResource("BoxMesh_8j5rm")
 
 [node name="Quarterback" parent="." instance=ExtResource("1_8j5rm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 15)
+
+[node name="Receiver" parent="." instance=ExtResource("2_7sdab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 15)
+
+[node name="DefenderCover" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_m6s6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 9.388838)
+target = NodePath("../Receiver")
+
+[node name="DefenderBlitz" parent="." node_paths=PackedStringArray("qb") instance=ExtResource("3_m6s6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06354594, 0.75, 8.328519)
+mode = "blitz"
+qb = NodePath("../Quarterback")

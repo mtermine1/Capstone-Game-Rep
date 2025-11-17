@@ -1,20 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://degxoga3wq3oi"]
+[gd_scene load_steps=5 format=3 uid="uid://degxoga3wq3oi"]
 
 [ext_resource type="Script" uid="uid://c7v7yeughi3p2" path="res://quarterback.gd" id="1_7t48y"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4jtx6"]
-radius = 0.4
-height = 1.2
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7t48y"]
+height = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7t48y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4jtx6"]
+height = 1.5
 
 [node name="Quarterback" type="CharacterBody3D"]
 script = ExtResource("1_7t48y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_4jtx6")
+shape = SubResource("CapsuleShape3D_7t48y")
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Camera" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 0.9975641, 0.06975647, 0, -0.06975647, 0.9975641, 0.1, 1.65, 0.1)
+transform = Transform3D(1, 0, 0, 0, 0.9975641, 0.06975647, 0, -0.06975647, 0.9975641, 0.1, 0.3654313, 0.1)
 fov = 50.0
+
+[node name="AimArrow" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 0, 0, -1)
+mesh = SubResource("CylinderMesh_7t48y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_4jtx6")

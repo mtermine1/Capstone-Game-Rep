@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmoychwdya5uk"]
+
+[ext_resource type="Script" uid="uid://mens3s2apsly" path="res://defender.gd" id="1_tywm1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytd42"]
+albedo_color = Color(0.83871967, 0.3188724, 0.2862334, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tywm1"]
+material = SubResource("StandardMaterial3D_ytd42")
+height = 1.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6vneq"]
+height = 1.5
+
+[node name="Defender" type="CharacterBody3D"]
+script = ExtResource("1_tywm1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_tywm1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_6vneq")

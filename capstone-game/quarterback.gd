@@ -2,18 +2,29 @@ extends CharacterBody3D
 
 @export var speed: float = 6.0
 @export var aim_speed: float = 1.5
+@export var max_throw_power: float = 30.0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var throw_power: float = 0.0
+var charging_throw := false
+
+# Correct football path
+var football_scene := preload("res://Football.tscn")
+
 @onready var head = $Head
 @onready var camera = $Head/Camera
+@onready var aim_arrow = $Head/AimArrow
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
+
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 
 func _physics_process(delta):
 	# Movement
@@ -21,11 +32,11 @@ func _physics_process(delta):
 	input_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_dir.z = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
 
-	var direction = (transform.basis * input_dir).normalized()
+	var movement_dir = (transform.basis * input_dir).normalized()
 
-	if direction != Vector3.ZERO:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+	if movement_dir != Vector3.ZERO:
+		velocity.x = movement_dir.x * speed
+		velocity.z = movement_dir.z * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
@@ -35,9 +46,9 @@ func _physics_process(delta):
 	else:
 		velocity.y = 0
 
-	# Arrow key aiming
+	# Arrow-key aiming
 	var aim_input_x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
-	var aim_input_y = Input.get_action_strength("aim_up") - Input.get_action_strength("aim_down")
+	var aim_input_y = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
 
 	if aim_input_x != 0:
 		rotate_y(-aim_input_x * aim_speed * delta)
@@ -46,10 +57,36 @@ func _physics_process(delta):
 		head.rotate_x(-aim_input_y * aim_speed * delta)
 		head.rotation_degrees.x = clamp(head.rotation_degrees.x, -75, 75)
 
-	# Throw input detection
-	if Input.is_action_just_pressed("throw/throw_power"):
-		print("Begin throw charge...")
-	if Input.is_action_just_released("throw/throw_power"):
-		print("Throw released!")
+	# Start charging throw
+	if Input.is_action_just_pressed("throw"):
+		charging_throw = true
+		throw_power = 0.0
+
+	# Charging
+	if charging_throw and Input.is_action_pressed("throw"):
+		throw_power += 20 * delta
+		throw_power = clamp(throw_power, 0, max_throw_power)
+
+		# Extend arrow forward
+		var base_forward = -1.0
+		var extension = (throw_power / max_throw_power) * 1.5
+		aim_arrow.position.z = base_forward - extension
+
+	# Release → Throw
+	if charging_throw and Input.is_action_just_released("throw"):
+		charging_throw = false
+		aim_arrow.position.z = -1.0
+
+		print("Throw released! Power = ", throw_power)
+
+		var ball = football_scene.instantiate()
+		get_tree().current_scene.add_child(ball)
+
+		# Spawn slightly above and in front of camera
+		ball.global_position = camera.global_position + Vector3(0, 0.5, 0) + (-camera.global_transform.basis.z * 0.5)
+
+		# Throw in camera’s forward direction
+		var throw_dir = -camera.global_transform.basis.z
+		ball.linear_velocity = throw_dir * throw_power
 
 	move_and_slide()

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://crg2a4w0nkwok"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_k2v71"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fjq4n"]
+
+[node name="Football" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("SphereMesh_k2v71")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+shape = SubResource("SphereShape3D_fjq4n")
