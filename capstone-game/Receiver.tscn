@@ -1,15 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2r626ewshqui"]
+[gd_scene load_steps=6 format=3 uid="uid://d2r626ewshqui"]
 
 [ext_resource type="Script" uid="uid://258pxcdv1iig" path="res://receiver.gd" id="1_j7om1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vmpl1"]
-height = 1.6
+radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oikqh"]
-height = 1.6
+radius = 0.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j7om1"]
 radius = 0.85
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7om1"]
+radius = 0.7
 
 [node name="Receiver" type="CharacterBody3D"]
 script = ExtResource("1_j7om1")
@@ -26,4 +29,10 @@ shape = SubResource("CapsuleShape3D_oikqh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24462068, 0)
 shape = SubResource("SphereShape3D_j7om1")
 
+[node name="HitZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitZone"]
+shape = SubResource("CapsuleShape3D_j7om1")
+
 [connection signal="body_entered" from="CatchZone" to="." method="_on_catch_zone_body_entered"]
+[connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]

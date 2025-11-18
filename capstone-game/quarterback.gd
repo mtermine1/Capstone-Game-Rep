@@ -86,3 +86,9 @@ func _physics_process(delta):
 		ball.linear_velocity = throw_dir * throw_power
 
 	move_and_slide()
+
+
+func _on_hit_zone_body_entered(body: Node3D) -> void:
+	if body.is_in_group("defender"):
+		print("QB tackled!")
+		get_tree().call_group("game_manager", "end_play", "tackle_qb")

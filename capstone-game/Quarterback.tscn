@@ -1,17 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://degxoga3wq3oi"]
+[gd_scene load_steps=6 format=3 uid="uid://degxoga3wq3oi"]
 
 [ext_resource type="Script" uid="uid://c7v7yeughi3p2" path="res://quarterback.gd" id="1_7t48y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7t48y"]
-height = 1.5
+radius = 0.7
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7t48y"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4jtx6"]
 height = 1.5
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4jtx6"]
+height = 1.5
+
 [node name="Quarterback" type="CharacterBody3D"]
 script = ExtResource("1_7t48y")
+aim_speed = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_7t48y")
@@ -29,3 +33,10 @@ mesh = SubResource("CylinderMesh_7t48y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4jtx6")
+
+[node name="HitZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitZone"]
+shape = SubResource("CapsuleShape3D_4jtx6")
+
+[connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]

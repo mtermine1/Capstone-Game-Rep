@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var qb: Node3D
 
 var start_position: Vector3
+var ball_caught := false
 var running_route := true
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -38,4 +39,13 @@ func _physics_process(delta):
 
 
 func _on_catch_zone_body_entered(body: Node3D) -> void:
-	pass # Replace with function body.
+	if body.is_in_group("football"):
+		print("Receiver caught the ball!")
+		ball_caught = true
+		body.queue_free()
+
+
+func _on_hit_zone_body_entered(body: Node3D) -> void:
+	if body.is_in_group("defender"):
+		print("Receiver tackled!")
+		get_tree().call_group("game_manager", "end_play", "tackle_wr")

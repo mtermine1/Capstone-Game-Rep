@@ -7,12 +7,12 @@ albedo_color = Color(0.83871967, 0.3188724, 0.2862334, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tywm1"]
 material = SubResource("StandardMaterial3D_ytd42")
-height = 1.5
+radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6vneq"]
-height = 1.5
+radius = 0.7
 
-[node name="Defender" type="CharacterBody3D"]
+[node name="Defender" type="CharacterBody3D" groups=["defender"]]
 script = ExtResource("1_tywm1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
