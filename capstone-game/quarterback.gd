@@ -1,9 +1,11 @@
 extends CharacterBody3D
 
+@onready var gm = get_tree().get_first_node_in_group("game_manager")
 @export var speed: float = 6.0
 @export var aim_speed: float = 1.5
 @export var max_throw_power: float = 30.0
 
+var has_ball := true
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var play_started := false
 var throw_power: float = 0.0
@@ -39,6 +41,7 @@ func _physics_process(delta):
 		velocity = Vector3.ZERO
 		if Input.is_action_just_pressed("throw"):
 			play_started = true
+			gm.start_play()
 			print("Hike!")
 		move_and_slide()
 		return
@@ -84,11 +87,11 @@ func _physics_process(delta):
 
 		var throw_dir = -camera.global_transform.basis.z
 		ball.linear_velocity = throw_dir * throw_power
+		has_ball = false
 
 	move_and_slide()
 
 
 func _on_hit_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("defender"):
-		print("QB tackled!")
-		get_tree().call_group("game_manager", "end_play", "tackle_qb")
+		gm.end_play("tackle_qb")

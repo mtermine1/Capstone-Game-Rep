@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmoychwdya5uk"]
+[gd_scene load_steps=6 format=3 uid="uid://bmoychwdya5uk"]
 
 [ext_resource type="Script" uid="uid://mens3s2apsly" path="res://defender.gd" id="1_tywm1"]
 
@@ -12,6 +12,9 @@ radius = 0.7
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6vneq"]
 radius = 0.7
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tywm1"]
+radius = 0.7
+
 [node name="Defender" type="CharacterBody3D" groups=["defender"]]
 script = ExtResource("1_tywm1")
 
@@ -20,3 +23,10 @@ mesh = SubResource("CapsuleMesh_tywm1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_6vneq")
+
+[node name="HitZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitZone"]
+shape = SubResource("CapsuleShape3D_tywm1")
+
+[connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]

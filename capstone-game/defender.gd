@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var reaction_time: float = 0.6
 @export var blitz_delay: float = 7.0
 @export var mode: String = "cover"
-
+@onready var gm = get_tree().get_first_node_in_group("game_manager")
 @export var target: Node3D
 @export var qb: Node3D
 
@@ -60,3 +60,17 @@ func run_blitz(delta):
 		var dir = (qb.global_position - global_position).normalized()
 		velocity.x = dir.x * speed * 1.4
 		velocity.z = dir.z * speed * 1.4
+
+
+func _on_hit_zone_body_entered(body: Node3D) -> void:
+	# If play not active, ignore
+	if gm == null or gm.play_active == false:
+		return
+
+	# Tackle QB only if he has ball
+	if body.is_in_group("qb") and body.has_ball:
+		gm.end_play("tackle_qb")
+
+	# Tackle WR only if he has ball
+	if body.is_in_group("wr") and body.has_ball:
+		gm.end_play("tackle_wr")

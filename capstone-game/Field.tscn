@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cr64oifdvch2i"]
+[gd_scene load_steps=13 format=3 uid="uid://cr64oifdvch2i"]
 
 [ext_resource type="PackedScene" uid="uid://degxoga3wq3oi" path="res://Quarterback.tscn" id="1_8j5rm"]
 [ext_resource type="PackedScene" uid="uid://d2r626ewshqui" path="res://Receiver.tscn" id="2_7sdab"]
 [ext_resource type="PackedScene" uid="uid://bmoychwdya5uk" path="res://Defender.tscn" id="3_m6s6n"]
+[ext_resource type="PackedScene" uid="uid://nqjoqpddi1vj" path="res://Game Manager.tscn" id="4_48t60"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0m6is"]
 sky_top_color = Color(0.16647446, 0.47030658, 0.6991369, 1)
@@ -75,7 +76,6 @@ mesh = SubResource("BoxMesh_8j5rm")
 
 [node name="Quarterback" parent="." instance=ExtResource("1_8j5rm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 15)
-aim_speed = 1.0
 
 [node name="Receiver" parent="." node_paths=PackedStringArray("qb") instance=ExtResource("2_7sdab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 15)
@@ -95,3 +95,6 @@ speed = 3.5
 reaction_time = 1.0
 mode = "blitz"
 qb = NodePath("../Quarterback")
+
+[node name="Game Manager" parent="." instance=ExtResource("4_48t60")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.456778, 0, 10.544127)

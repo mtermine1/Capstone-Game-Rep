@@ -13,7 +13,7 @@ height = 1.5
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4jtx6"]
 height = 1.5
 
-[node name="Quarterback" type="CharacterBody3D"]
+[node name="Quarterback" type="CharacterBody3D" groups=["qb"]]
 script = ExtResource("1_7t48y")
 aim_speed = 1.0
 
