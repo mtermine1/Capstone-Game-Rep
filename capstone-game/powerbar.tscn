@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://br1rul4wh4msn"]
+
+[ext_resource type="Texture2D" uid="uid://dur7dccxsad5d" path="res://animations/power bar animation/Untitled_Artwork-1 2.png" id="1_uf8jh"]
+[ext_resource type="Texture2D" uid="uid://ug88x4j1lv5r" path="res://animations/power bar animation/Untitled_Artwork-2 2.png" id="2_dltgi"]
+[ext_resource type="Texture2D" uid="uid://djwyovah44whw" path="res://animations/power bar animation/Untitled_Artwork-3 2.png" id="3_l73dl"]
+[ext_resource type="Texture2D" uid="uid://bqkdn1bvwxp74" path="res://animations/power bar animation/Untitled_Artwork-4 2.png" id="4_bv32n"]
+[ext_resource type="Texture2D" uid="uid://b0848p21j62yc" path="res://animations/power bar animation/Untitled_Artwork-5 2.png" id="5_e12yo"]
+[ext_resource type="Texture2D" uid="uid://hnj10q4qwgxs" path="res://animations/power bar animation/Untitled_Artwork-6 2.png" id="6_djnqb"]
+[ext_resource type="Texture2D" uid="uid://vwrn52r5p5kp" path="res://animations/power bar animation/Untitled_Artwork-7 2.png" id="7_qmf27"]
+[ext_resource type="Texture2D" uid="uid://klppw3q2mdwn" path="res://animations/power bar animation/Untitled_Artwork-8 2.png" id="8_okcce"]
+[ext_resource type="Texture2D" uid="uid://ch4m2jo683c43" path="res://animations/power bar animation/Untitled_Artwork-9 2.png" id="9_w1qya"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7hb0j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uf8jh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dltgi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l73dl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bv32n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e12yo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_djnqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qmf27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_okcce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_w1qya")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7hb0j")
+autoplay = "default"
+frame_progress = 0.4395598
