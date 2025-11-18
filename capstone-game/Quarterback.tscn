@@ -1,11 +1,58 @@
-[gd_scene load_steps=6 format=3 uid="uid://degxoga3wq3oi"]
+[gd_scene load_steps=15 format=3 uid="uid://degxoga3wq3oi"]
 
 [ext_resource type="Script" uid="uid://c7v7yeughi3p2" path="res://quarterback.gd" id="1_7t48y"]
+[ext_resource type="Texture2D" uid="uid://dur7dccxsad5d" path="res://animations/power bar animation/Untitled_Artwork-1 2.png" id="2_ec2go"]
+[ext_resource type="Texture2D" uid="uid://ug88x4j1lv5r" path="res://animations/power bar animation/Untitled_Artwork-2 2.png" id="3_rvo43"]
+[ext_resource type="Texture2D" uid="uid://djwyovah44whw" path="res://animations/power bar animation/Untitled_Artwork-3 2.png" id="4_t1wnp"]
+[ext_resource type="Texture2D" uid="uid://bqkdn1bvwxp74" path="res://animations/power bar animation/Untitled_Artwork-4 2.png" id="5_lo85v"]
+[ext_resource type="Texture2D" uid="uid://b0848p21j62yc" path="res://animations/power bar animation/Untitled_Artwork-5 2.png" id="6_qwedk"]
+[ext_resource type="Texture2D" uid="uid://hnj10q4qwgxs" path="res://animations/power bar animation/Untitled_Artwork-6 2.png" id="7_afvym"]
+[ext_resource type="Texture2D" uid="uid://vwrn52r5p5kp" path="res://animations/power bar animation/Untitled_Artwork-7 2.png" id="8_ag5gh"]
+[ext_resource type="Texture2D" uid="uid://klppw3q2mdwn" path="res://animations/power bar animation/Untitled_Artwork-8 2.png" id="9_wmjel"]
+[ext_resource type="Texture2D" uid="uid://ch4m2jo683c43" path="res://animations/power bar animation/Untitled_Artwork-9 2.png" id="10_l8w57"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7t48y"]
 radius = 0.7
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_7t48y"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_bkl3l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ec2go")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rvo43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t1wnp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lo85v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qwedk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_afvym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ag5gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wmjel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l8w57")
+}],
+"loop": true,
+"name": &"aim",
+"speed": 4.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4jtx6"]
 height = 1.5
@@ -27,9 +74,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 transform = Transform3D(1, 0, 0, 0, 0.9975641, 0.06975647, 0, -0.06975647, 0.9975641, 0.1, 0.3654313, 0.1)
 fov = 50.0
 
-[node name="AimArrow" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 0, 0, -1)
-mesh = SubResource("CylinderMesh_7t48y")
+[node name="AimArrow" type="AnimatedSprite3D" parent="Head"]
+transform = Transform3D(-0.04999655, 0.0005872971, 3.7949612e-09, 0.00029520618, 0.025131157, -0.04322427, -0.00050771167, -0.04322129, -0.025132893, -0.072469115, -0.20647788, -1.5126783)
+sprite_frames = SubResource("SpriteFrames_bkl3l")
+animation = &"aim"
+autoplay = "aim"
+frame_progress = 0.65805626
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4jtx6")
