@@ -84,6 +84,8 @@ animation = &"aim"
 autoplay = "aim"
 frame_progress = 0.65805626
 
+[node name="AimArrow" type="Node3D" parent="Head"]
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4jtx6")
 

@@ -45,7 +45,7 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Node3D" type="Node3D"]
+[node name="PowerBar" type="Node3D"]
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7hb0j")
