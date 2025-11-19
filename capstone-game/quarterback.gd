@@ -9,6 +9,7 @@ var has_ball := true
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var play_started := false
 var throw_power: float = 0.0
+@onready var power_bar = $Head/Camera/PowerBar/AnimatedSprite3D
 var charging_throw := false
 
 var football_scene := preload("res://Football.tscn")
@@ -69,27 +70,36 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("throw"):
 		charging_throw = true
 		throw_power = 0.0
+		power_bar.visible = true
+		power_bar.frame = 0
 
 	if charging_throw and Input.is_action_pressed("throw"):
 		throw_power += 20 * delta
 		throw_power = clamp(throw_power, 0, max_throw_power)
-		var base_forward = -1.0
-		var extension = (throw_power / max_throw_power) * 1.5
-		aim_arrow.position.z = base_forward - extension
+
+	# Update bar frame based on throw power (assumes 6 frames)
+	var total_frames = power_bar.sprite_frames.get_frame_count("default")
+	var frame_index = int((throw_power / max_throw_power) * (total_frames - 1))
+	power_bar.frame = frame_index
+
+	# Move arrow still
+	var base_forward = -1.0
+	var extension = (throw_power / max_throw_power) * 1.5
+	aim_arrow.position.z = base_forward - extension
 
 	if charging_throw and Input.is_action_just_released("throw"):
 		charging_throw = false
+		power_bar.visible = false
 		aim_arrow.position.z = -1.0
 
-		var ball = football_scene.instantiate()
-		get_tree().current_scene.add_child(ball)
-		ball.global_position = camera.global_position + Vector3(0, 0.5, 0) + (-camera.global_transform.basis.z * 0.5)
+	var ball = football_scene.instantiate()
+	get_tree().current_scene.add_child(ball)
+	ball.global_position = camera.global_position + Vector3(0, 0.5, 0) + (-camera.global_transform.basis.z * 0.5)
 
-		var throw_dir = -camera.global_transform.basis.z
-		ball.linear_velocity = throw_dir * throw_power
-		has_ball = false
+	var throw_dir = -camera.global_transform.basis.z
+	ball.linear_velocity = throw_dir * throw_power
+	has_ball = false
 
-	move_and_slide()
 
 
 func _on_hit_zone_body_entered(body: Node3D) -> void:

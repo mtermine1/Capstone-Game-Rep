@@ -74,8 +74,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 transform = Transform3D(1, 0, 0, 0, 0.9975641, 0.06975647, 0, -0.06975647, 0.9975641, 0.1, 0.3654313, 0.1)
 fov = 50.0
 
-[node name="AimArrow" type="AnimatedSprite3D" parent="Head"]
-transform = Transform3D(-0.04999655, 0.0005872971, 3.7949612e-09, 0.00029520618, 0.025131157, -0.04322427, -0.00050771167, -0.04322129, -0.025132893, -0.072469115, -0.20647788, -1.5126783)
+[node name="PowerBar" type="Node3D" parent="Head/Camera"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, -7.450581e-09, 0, 7.450581e-09, 0.99999994, 0, 0, 0)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Head/Camera/PowerBar"]
+transform = Transform3D(-0.04999655, 0.0005872978, 4.240995e-09, 0.0003299033, 0.028084904, -0.0413658, -0.00048588324, -0.04136295, -0.028086841, 0, -0.33422178, -1.7055385)
 sprite_frames = SubResource("SpriteFrames_bkl3l")
 animation = &"aim"
 autoplay = "aim"
