@@ -13,10 +13,13 @@ radius = 0.7
 radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tywm1"]
-radius = 0.7
+radius = 0.9
 
 [node name="Defender" type="CharacterBody3D" groups=["defender"]]
 script = ExtResource("1_tywm1")
+speed = 6.0
+cushion = 0.0
+reaction_time = 0.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_tywm1")

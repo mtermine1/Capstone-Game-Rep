@@ -84,8 +84,8 @@ qb = NodePath("../Quarterback")
 
 [node name="DefenderCover" parent="." node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 11.268772)
-speed = 0.0
-cushion = 10.0
+cushion = 4.0
+reaction_time = 0.5
 blitz_delay = 6.0
 target = NodePath("../Receiver")
 qb = NodePath("../Quarterback")

@@ -17,7 +17,7 @@ var football_scene := preload("res://Football.tscn")
 @onready var head = $Head
 @onready var camera = $Head/Camera
 @onready var aim_arrow = $Head/AimArrow
-@onready var power_bar: AnimatedSprite3D = $Head/Camera/PowerBar/AnimatedSprite3D
+@onready var power_bar: AnimatedSprite3D = $Head/Camera/PowerBar
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -80,6 +80,7 @@ func _physics_process(delta):
 		throw_power = 0.0
 		power_bar.visible = true
 		power_bar.frame = 0
+		power_bar.play()
 
 	# Continue charging
 	if charging_throw and Input.is_action_pressed("throw"):
@@ -87,9 +88,10 @@ func _physics_process(delta):
 		throw_power = clamp(throw_power, 0, max_throw_power)
 
 		# Update bar frame
-		var total_frames = power_bar.sprite_frames.get_frame_count("default")
-		var frame_index = int((throw_power / max_throw_power) * (total_frames - 1))
-		power_bar.frame = frame_index
+		#var total_frames = power_bar.sprite_frames.get_frame_count("default")
+		#var frame_index = int((throw_power / max_throw_power) * (total_frames - 1))
+		#power_bar.frame = frame_index
+		
 
 		# Move aiming arrow
 		aim_arrow.position.z = -1.0 - (throw_power / max_throw_power) * 1.5
@@ -109,7 +111,3 @@ func _spawn_ball():
 	ball.global_position = camera.global_position + Vector3(0, 0.5, 0) + (-camera.global_transform.basis.z * 0.5)
 	ball.linear_velocity = -camera.global_transform.basis.z * throw_power
 	has_ball = false  # QB no longer holds ball
-
-func _on_hit_zone_body_entered(body: Node3D) -> void:
-	if body.is_in_group("defender") and has_ball:
-		gm.end_play("tackle_qb")

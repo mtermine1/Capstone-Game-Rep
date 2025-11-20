@@ -63,12 +63,9 @@ func run_blitz(delta):
 
 
 func _on_hit_zone_body_entered(body: Node3D) -> void:
-	# If play not active, ignore
-	if gm == null or gm.play_active == false:
-		return
-
 	# Tackle QB only if he has ball
 	if body.is_in_group("qb") and body.has_ball:
+		print("tackled qb")
 		gm.end_play("tackle_qb")
 
 	# Tackle WR only if he has ball
