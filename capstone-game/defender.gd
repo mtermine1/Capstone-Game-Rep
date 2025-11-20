@@ -14,7 +14,19 @@ var reaction_timer := 0.0
 var blitz_timer := 0.0
 var blitz_started := false
 
+func chase_receiver(delta):
+	var dir = (target.global_position - global_position).normalized()
+	velocity.x = dir.x * speed * 1.3
+	velocity.z = dir.z * speed * 1.3
+
+
 func _physics_process(delta):
+	# After catch, always chase WR
+	if qb and qb.has_ball == false and target and target.has_ball:
+		chase_receiver(delta)
+		move_and_slide()
+		return
+
 	if qb and not qb.play_started:
 		velocity = Vector3.ZERO
 		return

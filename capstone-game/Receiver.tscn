@@ -34,7 +34,5 @@ shape = SubResource("SphereShape3D_j7om1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitZone"]
 shape = SubResource("CapsuleShape3D_j7om1")
 
-[node name="WR_Camera" type="Camera3D" parent="."]
-
 [connection signal="body_entered" from="CatchZone" to="." method="_on_catch_zone_body_entered"]
 [connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]

@@ -6,7 +6,6 @@ extends CharacterBody3D
 @export var qb: Node3D
 
 @onready var gm = get_tree().get_first_node_in_group("game_manager")
-@onready var wr_camera = $WR_Camera
 
 var start_position: Vector3
 var running_route := true
@@ -15,7 +14,6 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	start_position = global_position
-	wr_camera.current = false  # off at start
 
 func _physics_process(delta):
 	# Freeze until hike
@@ -24,13 +22,13 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 
-	# After catching, player controls WR
+	# After catch, player takes control
 	if has_ball:
 		player_control(delta)
 		move_and_slide()
 		return
 
-	# Otherwise run the AI route
+	# Otherwise run the assigned route
 	run_route(delta)
 	move_and_slide()
 
@@ -62,7 +60,6 @@ func _on_catch_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("football"):
 		print("Receiver caught the ball!")
 		has_ball = true
-		wr_camera.current = true  # Switch camera
 		gm.end_play("catch")
 		body.queue_free()
 

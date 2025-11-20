@@ -28,13 +28,13 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
-	# If QB doesn’t have the ball (WR took over), freeze QB
+	# If QB no longer has the ball (WR controls), freeze QB
 	if not has_ball:
 		velocity = Vector3.ZERO
 		move_and_slide()
 		return
 
-	# Aiming ALWAYS allowed (pre/post snap)
+	# Aiming ALWAYS allowed
 	var aim_x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
 	var aim_y = Input.get_action_strength("aim_up") - Input.get_action_strength("aim_down")
 
@@ -44,7 +44,7 @@ func _physics_process(delta):
 		head.rotate_x(-aim_y * aim_speed * delta)
 		head.rotation_degrees.x = clamp(head.rotation_degrees.x, -75, 75)
 
-	# Pre-snap: no movement until space pressed (hike)
+	# Pre-snap freeze
 	if not play_started:
 		velocity = Vector3.ZERO
 		if Input.is_action_just_pressed("throw"):
@@ -54,7 +54,7 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 
-	# Movement after hike
+	# Post-snap movement
 	var input_dir = Vector3.ZERO
 	input_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_dir.z = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
@@ -68,39 +68,33 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 
-	# Gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		velocity.y = 0
 
-	# Throw Charging
+	# START charging throw
 	if Input.is_action_just_pressed("throw"):
 		charging_throw = true
 		throw_power = 0.0
 		power_bar.visible = true
 		power_bar.frame = 0
-		power_bar.play()
+		power_bar.play()  # restore animation!
 
-	# Continue charging
+	# HOLDING throw
 	if charging_throw and Input.is_action_pressed("throw"):
 		throw_power += 20 * delta
 		throw_power = clamp(throw_power, 0, max_throw_power)
 
-		# Update bar frame
-		#var total_frames = power_bar.sprite_frames.get_frame_count("default")
-		#var frame_index = int((throw_power / max_throw_power) * (total_frames - 1))
-		#power_bar.frame = frame_index
-		
-
-		# Move aiming arrow
+		# Move arrow to show throw distance
 		aim_arrow.position.z = -1.0 - (throw_power / max_throw_power) * 1.5
 
-	# Release throw
+	# RELEASE throw
 	if charging_throw and Input.is_action_just_released("throw"):
 		charging_throw = false
 		power_bar.visible = false
-		aim_arrow.position.z = -1.0  # reset arrow
+		power_bar.stop()     # stop animation!
+		aim_arrow.position.z = -1.0
 		_spawn_ball()
 
 	move_and_slide()
@@ -110,4 +104,6 @@ func _spawn_ball():
 	get_tree().current_scene.add_child(ball)
 	ball.global_position = camera.global_position + Vector3(0, 0.5, 0) + (-camera.global_transform.basis.z * 0.5)
 	ball.linear_velocity = -camera.global_transform.basis.z * throw_power
-	has_ball = false  # QB no longer holds ball
+
+	has_ball = false
+	camera.current = false  # turn OFF QB cam when he throws
