@@ -1,7 +1,7 @@
 extends Camera3D
 
 @export var target: Node3D        # WR set from editor
-@export var distance: float = -10.0
+@export var distance: float = 0
 @export var height: float = 5.0
 @export var follow_speed: float = 6.0
 
