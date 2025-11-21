@@ -9,6 +9,7 @@ extends CharacterBody3D
 @export var target: Node3D
 @export var qb: Node3D
 
+var has_ball := false
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var reaction_timer := 0.0
 var blitz_timer := 0.0
@@ -82,4 +83,12 @@ func _on_hit_zone_body_entered(body: Node3D) -> void:
 
 	# Tackle WR only if he has ball
 	if body.is_in_group("wr") and body.has_ball:
+		print("tackled wr")
 		gm.end_play("tackle_wr")
+
+
+func _on_catch_zone_body_entered(body: Node3D) -> void:
+	if body.is_in_group("football"):
+		print("Interception!")
+		has_ball = true
+		body.queue_free()
