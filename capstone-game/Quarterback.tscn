@@ -1,15 +1,15 @@
 [gd_scene load_steps=15 format=3 uid="uid://degxoga3wq3oi"]
 
 [ext_resource type="Script" uid="uid://c7v7yeughi3p2" path="res://quarterback.gd" id="1_7t48y"]
-[ext_resource type="Texture2D" uid="uid://dur7dccxsad5d" path="res://animations/power bar animation/Untitled_Artwork-1 2.png" id="2_ec2go"]
-[ext_resource type="Texture2D" uid="uid://ug88x4j1lv5r" path="res://animations/power bar animation/Untitled_Artwork-2 2.png" id="3_rvo43"]
-[ext_resource type="Texture2D" uid="uid://djwyovah44whw" path="res://animations/power bar animation/Untitled_Artwork-3 2.png" id="4_t1wnp"]
-[ext_resource type="Texture2D" uid="uid://bqkdn1bvwxp74" path="res://animations/power bar animation/Untitled_Artwork-4 2.png" id="5_lo85v"]
-[ext_resource type="Texture2D" uid="uid://b0848p21j62yc" path="res://animations/power bar animation/Untitled_Artwork-5 2.png" id="6_qwedk"]
-[ext_resource type="Texture2D" uid="uid://hnj10q4qwgxs" path="res://animations/power bar animation/Untitled_Artwork-6 2.png" id="7_afvym"]
-[ext_resource type="Texture2D" uid="uid://vwrn52r5p5kp" path="res://animations/power bar animation/Untitled_Artwork-7 2.png" id="8_ag5gh"]
-[ext_resource type="Texture2D" uid="uid://klppw3q2mdwn" path="res://animations/power bar animation/Untitled_Artwork-8 2.png" id="9_wmjel"]
-[ext_resource type="Texture2D" uid="uid://ch4m2jo683c43" path="res://animations/power bar animation/Untitled_Artwork-9 2.png" id="10_l8w57"]
+[ext_resource type="Texture2D" uid="uid://cvegqvwcf054x" path="res://animations/power bar animation 2/Untitled_Artwork-1 3.png" id="2_ec2go"]
+[ext_resource type="Texture2D" uid="uid://dicwiwa1no2kp" path="res://animations/power bar animation 2/Untitled_Artwork-2 3.png" id="3_rvo43"]
+[ext_resource type="Texture2D" uid="uid://bmv4rtxayqtb4" path="res://animations/power bar animation 2/Untitled_Artwork-3 3.png" id="4_t1wnp"]
+[ext_resource type="Texture2D" uid="uid://cym7ueo1ji7gw" path="res://animations/power bar animation 2/Untitled_Artwork-4 3.png" id="5_lo85v"]
+[ext_resource type="Texture2D" uid="uid://dee32emnr7tvh" path="res://animations/power bar animation 2/Untitled_Artwork-5 3.png" id="6_qwedk"]
+[ext_resource type="Texture2D" uid="uid://kj5joqtoex4a" path="res://animations/power bar animation 2/Untitled_Artwork-6 3.png" id="7_afvym"]
+[ext_resource type="Texture2D" uid="uid://bh0w1i8rsa2xh" path="res://animations/power bar animation 2/Untitled_Artwork-7 3.png" id="8_ag5gh"]
+[ext_resource type="Texture2D" uid="uid://d1u04fbrnavwy" path="res://animations/power bar animation 2/Untitled_Artwork-8 3.png" id="9_wmjel"]
+[ext_resource type="Texture2D" uid="uid://dxdeakiel0cqf" path="res://animations/power bar animation 2/Untitled_Artwork-9 3.png" id="10_l8w57"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7t48y"]
 radius = 0.7
@@ -46,7 +46,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"aim",
-"speed": 4.0
+"speed": 3.0
 }, {
 "frames": [],
 "loop": true,
@@ -79,8 +79,6 @@ transform = Transform3D(-0.04999655, 0.0005872978, 4.240995e-09, 0.00032990324, 
 sprite_frames = SubResource("SpriteFrames_bkl3l")
 animation = &"aim"
 autoplay = "aim"
-frame = 3
-frame_progress = 0.2475758
 
 [node name="AimArrow" type="Node3D" parent="Head"]
 
