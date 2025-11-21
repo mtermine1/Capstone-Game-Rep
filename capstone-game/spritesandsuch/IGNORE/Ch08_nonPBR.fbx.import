@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c0v3hyif6utb0"
-path="res://.godot/imported/Ch08_nonPBR.fbx-584eafd5a1c5b3c6145bf69873c51a68.scn"
+path="res://.godot/imported/Ch08_nonPBR.fbx-38d261394aa799e41456227a1a3db7b4.scn"
 
 [deps]
 
-source_file="res://spritesandsuch/player1/Ch08_nonPBR.fbx"
-dest_files=["res://.godot/imported/Ch08_nonPBR.fbx-584eafd5a1c5b3c6145bf69873c51a68.scn"]
+source_file="res://spritesandsuch/IGNORE/Ch08_nonPBR.fbx"
+dest_files=["res://.godot/imported/Ch08_nonPBR.fbx-38d261394aa799e41456227a1a3db7b4.scn"]
 
 [params]
 

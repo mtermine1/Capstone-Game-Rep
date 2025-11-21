@@ -2,34 +2,35 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckebfaigrd5i3"
-path="res://.godot/imported/Ch08_nonPBR_9.png-083bc1d364060c531d4e0b2fe0eedc79.ctex"
+uid="uid://cpkgtiivphomg"
+path.s3tc="res://.godot/imported/Ch08_nonPBR_3.png-ac672f356a59dc06d7a7cc5fe4829425.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
-"md5": "29cedc774a761d57dc6fd467f883e338"
+"md5": "b916aa600ae07c95d0b80ea1d2c41c44"
 }
 
 [deps]
 
-source_file="res://spritesandsuch/player1/Ch08_nonPBR_9.png"
-dest_files=["res://.godot/imported/Ch08_nonPBR_9.png-083bc1d364060c531d4e0b2fe0eedc79.ctex"]
+source_file="res://spritesandsuch/IGNORE/Ch08_nonPBR_3.png"
+dest_files=["res://.godot/imported/Ch08_nonPBR_3.png-ac672f356a59dc06d7a7cc5fe4829425.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Ch08_nonPBR_3.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
@@ -40,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
