@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cr64oifdvch2i"]
+[gd_scene load_steps=20 format=3 uid="uid://cr64oifdvch2i"]
 
 [ext_resource type="PackedScene" uid="uid://degxoga3wq3oi" path="res://Quarterback.tscn" id="1_8j5rm"]
 [ext_resource type="PackedScene" uid="uid://d2r626ewshqui" path="res://Receiver.tscn" id="2_7sdab"]
@@ -47,6 +47,12 @@ size = Vector3(2, 20, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2prm6"]
 size = Vector3(2, 20, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_63o6r"]
+size = Vector3(30, 20, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6tmj7"]
+size = Vector3(30, 20, 2)
 
 [node name="Field" type="Node3D"]
 
@@ -150,3 +156,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sideline1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 shape = SubResource("BoxShape3D_2prm6")
+
+[node name="BoundaryEndZoneB" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoundaryEndZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26)
+shape = SubResource("BoxShape3D_63o6r")
+
+[node name="BoundaryEndZoneA" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoundaryEndZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26)
+shape = SubResource("BoxShape3D_6tmj7")

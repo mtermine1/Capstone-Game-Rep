@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckebfaigrd5i3"
-path="res://.godot/imported/Ch08_nonPBR_9.png-083bc1d364060c531d4e0b2fe0eedc79.ctex"
+uid="uid://djmqr7bdth8pw"
+path="res://.godot/imported/Ch08_nonPBR_5.png-965d136a45138ef27a2b8df74e437fd2.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "29cedc774a761d57dc6fd467f883e338"
+"md5": "cc54f89ab2f803775b259523df174726"
 }
 
 [deps]
 
-source_file="res://spritesandsuch/player1/Ch08_nonPBR_9.png"
-dest_files=["res://.godot/imported/Ch08_nonPBR_9.png-083bc1d364060c531d4e0b2fe0eedc79.ctex"]
+source_file="res://spritesandsuch/IGNORE/Ch08_nonPBR_5.png"
+dest_files=["res://.godot/imported/Ch08_nonPBR_5.png-965d136a45138ef27a2b8df74e437fd2.ctex"]
 
 [params]
 

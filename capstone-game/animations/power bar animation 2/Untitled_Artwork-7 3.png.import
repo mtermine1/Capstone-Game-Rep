@@ -2,23 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1xsyk6t8vmk"
-path="res://.godot/imported/Ch08_nonPBR_1.png-b9ba68b7ffad40869fbcc22710e49209.ctex"
+uid="uid://bh0w1i8rsa2xh"
+path.s3tc="res://.godot/imported/Untitled_Artwork-7 3.png-59cb7b400229759e9e55421d9a48692e.s3tc.ctex"
 metadata={
-"vram_texture": false
-}
-generator_parameters={
-"md5": "44fecdae64ee54af02c3dcc296a39493"
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://spritesandsuch/player1/Ch08_nonPBR_1.png"
-dest_files=["res://.godot/imported/Ch08_nonPBR_1.png-b9ba68b7ffad40869fbcc22710e49209.ctex"]
+source_file="res://animations/power bar animation 2/Untitled_Artwork-7 3.png"
+dest_files=["res://.godot/imported/Untitled_Artwork-7 3.png-59cb7b400229759e9e55421d9a48692e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +38,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

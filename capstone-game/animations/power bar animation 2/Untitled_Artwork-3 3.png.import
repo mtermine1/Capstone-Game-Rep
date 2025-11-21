@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj8s3jkfhlg2k"
-path.s3tc="res://.godot/imported/Ch08_nonPBR_8.png-139e42312fc073b6edced1e5b6e20aa8.s3tc.ctex"
+uid="uid://bmv4rtxayqtb4"
+path.s3tc="res://.godot/imported/Untitled_Artwork-3 3.png-f220988fe454e7faece3a805b01ee7f2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "e44c45d9022f24b317b8ece8478ed15f"
-}
 
 [deps]
 
-source_file="res://spritesandsuch/player1/Ch08_nonPBR_8.png"
-dest_files=["res://.godot/imported/Ch08_nonPBR_8.png-139e42312fc073b6edced1e5b6e20aa8.s3tc.ctex"]
+source_file="res://animations/power bar animation 2/Untitled_Artwork-3 3.png"
+dest_files=["res://.godot/imported/Untitled_Artwork-3 3.png-f220988fe454e7faece3a805b01ee7f2.s3tc.ctex"]
 
 [params]
 
