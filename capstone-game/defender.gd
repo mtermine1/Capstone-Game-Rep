@@ -133,3 +133,4 @@ func play_idle_animation():
 	sprite.stop()
 	sprite.frame = 0
 	
+	
