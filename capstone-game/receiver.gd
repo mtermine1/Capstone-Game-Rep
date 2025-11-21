@@ -60,5 +60,7 @@ func _on_catch_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("football"):
 		print("Receiver caught the ball!")
 		has_ball = true
+		qb.get_node("Head/Camera").current = false
+		$"/root/Field/FollowCam".current = true
 		gm.end_play("catch")
 		body.queue_free()

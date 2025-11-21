@@ -10,6 +10,8 @@ var has_ball := true
 var play_started := false
 var throw_power: float = 0.0
 var charging_throw := false
+@onready var ball_spawn: Node3D = $Head/Camera/BallSpawn
+
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var football_scene := preload("res://Football.tscn")
@@ -103,16 +105,18 @@ func _spawn_ball():
 	var ball = football_scene.instantiate()
 	get_tree().current_scene.add_child(ball)
 
-	# Spawn in front of camera
-	ball.global_position = camera.global_position + Vector3(0, 0.5, 0) + (-camera.global_transform.basis.z * 0.5)
+	# spawn from marker
+	ball.global_position = ball_spawn.global_position
 
-	# Throw direction with arc
+	# throw direction with arc
 	var dir = -camera.global_transform.basis.z
-	dir.y += 0.35  # lift angle (change this for higher/lower throws)
+	dir.y += 0.35
 	dir = dir.normalized()
 
-	# Apply velocity (speed based on charge)
+	# apply force to rigidbody
 	ball.linear_velocity = dir * (throw_power * 1.4)
 
+	# optional spin
+	ball.apply_torque_impulse(Vector3(0, 4, 0))
+
 	has_ball = false
-	camera.current = false
