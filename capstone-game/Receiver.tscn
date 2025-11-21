@@ -35,4 +35,3 @@ shape = SubResource("SphereShape3D_j7om1")
 shape = SubResource("CapsuleShape3D_j7om1")
 
 [connection signal="body_entered" from="CatchZone" to="." method="_on_catch_zone_body_entered"]
-[connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]

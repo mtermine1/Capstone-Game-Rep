@@ -77,16 +77,17 @@ mesh = SubResource("BoxMesh_8j5rm")
 
 [node name="Quarterback" parent="." instance=ExtResource("1_8j5rm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 15)
+max_throw_power = 15.0
 
 [node name="Receiver" parent="." node_paths=PackedStringArray("qb") instance=ExtResource("2_7sdab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 15)
-speed = 4.0
+speed = 6.0
 qb = NodePath("../Quarterback")
 
 [node name="DefenderCover" parent="." node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 11.268772)
-speed = 0.0
-cushion = 4.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 10.376906)
+speed = 4.0
+cushion = 2.0
 reaction_time = 0.5
 blitz_delay = 6.0
 target = NodePath("../Receiver")
@@ -104,6 +105,8 @@ qb = NodePath("../Quarterback")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.456778, 0, 10.544127)
 
 [node name="FollowCam" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 6, -10)
+fov = 80.0
 script = ExtResource("5_sl1x8")
 target = NodePath("../Receiver")
+distance = 7.0

@@ -62,7 +62,3 @@ func _on_catch_zone_body_entered(body: Node3D) -> void:
 		has_ball = true
 		gm.end_play("catch")
 		body.queue_free()
-
-func _on_hit_zone_body_entered(body: Node3D) -> void:
-	if body.is_in_group("defender") and has_ball:
-		gm.end_play("tackle_wr")

@@ -83,7 +83,7 @@ func _physics_process(delta):
 
 	# HOLDING throw
 	if charging_throw and Input.is_action_pressed("throw"):
-		throw_power += 20 * delta
+		throw_power += 8 * delta
 		throw_power = clamp(throw_power, 0, max_throw_power)
 
 		# Move arrow to show throw distance
@@ -102,8 +102,17 @@ func _physics_process(delta):
 func _spawn_ball():
 	var ball = football_scene.instantiate()
 	get_tree().current_scene.add_child(ball)
+
+	# Spawn in front of camera
 	ball.global_position = camera.global_position + Vector3(0, 0.5, 0) + (-camera.global_transform.basis.z * 0.5)
-	ball.linear_velocity = -camera.global_transform.basis.z * throw_power
+
+	# Throw direction with arc
+	var dir = -camera.global_transform.basis.z
+	dir.y += 0.35  # lift angle (change this for higher/lower throws)
+	dir = dir.normalized()
+
+	# Apply velocity (speed based on charge)
+	ball.linear_velocity = dir * (throw_power * 1.4)
 
 	has_ball = false
-	camera.current = false  # turn OFF QB cam when he throws
+	camera.current = false
