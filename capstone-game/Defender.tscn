@@ -1,8 +1,16 @@
-
-[gd_scene load_steps=12 format=3 uid="uid://bmoychwdya5uk"]
+[gd_scene load_steps=13 format=3 uid="uid://bmoychwdya5uk"]
 
 [ext_resource type="Script" uid="uid://mens3s2apsly" path="res://defender.gd" id="1_tywm1"]
 [ext_resource type="Texture2D" uid="uid://3wutc8yjtc38" path="res://spritesandsuch/player1/player 1.png" id="2_6vneq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6vneq"]
+radius = 0.7
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tywm1"]
+radius = 0.9
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c8k0s"]
+radius = 0.8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vneq"]
 atlas = ExtResource("2_6vneq")
@@ -50,31 +58,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_1k78t")
 }],
 "loop": true,
-"name": &"default",
+"name": &"run!",
 "speed": 5.0
 }]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6vneq"]
-radius = 0.7
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tywm1"]
-radius = 0.9
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c8k0s"]
-radius = 0.8
 
 [node name="Defender" type="CharacterBody3D" groups=["defender"]]
 script = ExtResource("1_tywm1")
 speed = 6.0
 cushion = 0.0
 reaction_time = 0.0
-
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
-billboard = 2
-texture_filter = 0
-sprite_frames = SubResource("SpriteFrames_ahdqo")
-frame_progress = 0.21820274
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_6vneq")
@@ -89,6 +81,13 @@ shape = SubResource("CapsuleShape3D_tywm1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CatchZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1470747, 0)
 shape = SubResource("CapsuleShape3D_c8k0s")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ahdqo")
+animation = &"run!"
 
 [connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]
 [connection signal="body_entered" from="CatchZone" to="." method="_on_catch_zone_body_entered"]
