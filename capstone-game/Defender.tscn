@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmoychwdya5uk"]
+[gd_scene load_steps=16 format=3 uid="uid://bmoychwdya5uk"]
 
 [ext_resource type="Script" uid="uid://mens3s2apsly" path="res://defender.gd" id="1_tywm1"]
 [ext_resource type="Texture2D" uid="uid://3wutc8yjtc38" path="res://spritesandsuch/player1/player 1.png" id="2_6vneq"]
+[ext_resource type="Texture2D" uid="uid://cwpxghrabqyt5" path="res://spritesandsuch/player1/defense crouch.png" id="2_c8k0s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6vneq"]
 radius = 0.7
@@ -11,6 +12,14 @@ radius = 0.9
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c8k0s"]
 radius = 0.8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahdqo"]
+atlas = ExtResource("2_c8k0s")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgoyr"]
+atlas = ExtResource("2_c8k0s")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vneq"]
 atlas = ExtResource("2_6vneq")
@@ -38,6 +47,26 @@ region = Rect2(320, 256, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ahdqo"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahdqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahdqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgoyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgoyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgoyr")
+}],
+"loop": false,
+"name": &"ready",
+"speed": 3.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6vneq")
@@ -87,7 +116,14 @@ transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_ahdqo")
-animation = &"run!"
+animation = &"ready"
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="AnimatedSprite3D"]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ahdqo")
+animation = &"ready"
 
 [connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]
 [connection signal="body_entered" from="CatchZone" to="." method="_on_catch_zone_body_entered"]
