@@ -62,17 +62,6 @@ animations = [{
 "speed": 5.0
 }]
 
-<<<<<<< HEAD
-=======
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6vneq"]
-radius = 0.7
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tywm1"]
-radius = 0.9
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c8k0s"]
-
->>>>>>> ea6cd7c8856e0e023f975d4e31f7afe2b5a6809b
 [node name="Defender" type="CharacterBody3D" groups=["defender"]]
 script = ExtResource("1_tywm1")
 speed = 6.0
