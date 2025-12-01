@@ -13,6 +13,10 @@ radius = 0.9
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c8k0s"]
 radius = 0.8
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2er05"]
+atlas = ExtResource("2_6vneq")
+region = Rect2(256, 256, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahdqo"]
 atlas = ExtResource("2_c8k0s")
 region = Rect2(64, 0, 64, 64)
@@ -37,10 +41,6 @@ region = Rect2(128, 256, 64, 64)
 atlas = ExtResource("2_6vneq")
 region = Rect2(192, 256, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2er05"]
-atlas = ExtResource("2_6vneq")
-region = Rect2(256, 256, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1k78t"]
 atlas = ExtResource("2_6vneq")
 region = Rect2(320, 256, 64, 64)
@@ -49,23 +49,22 @@ region = Rect2(320, 256, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ahdqo")
+"texture": SubResource("AtlasTexture_2er05")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ahdqo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hgoyr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hgoyr")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hgoyr")
 }],
 "loop": false,
 "name": &"ready",
-"speed": 3.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -93,9 +92,6 @@ animations = [{
 
 [node name="Defender" type="CharacterBody3D" groups=["defender"]]
 script = ExtResource("1_tywm1")
-speed = 6.0
-cushion = 0.0
-reaction_time = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_6vneq")
@@ -116,14 +112,7 @@ transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_ahdqo")
-animation = &"ready"
-
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="AnimatedSprite3D"]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
-billboard = 2
-texture_filter = 0
-sprite_frames = SubResource("SpriteFrames_ahdqo")
-animation = &"ready"
+animation = &"idle"
 
 [connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]
 [connection signal="body_entered" from="CatchZone" to="." method="_on_catch_zone_body_entered"]

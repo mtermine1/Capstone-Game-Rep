@@ -12,7 +12,8 @@ extends CharacterBody3D
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
 var was_moving := false
-var has_ball := false
+var has_ball:= false
+var ready_played := false
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var reaction_timer := 0.0
@@ -28,46 +29,51 @@ func chase_receiver(delta):
 
 
 func _physics_process(delta):      
-
-	# After catch, always chase WR
-	if qb and qb.has_ball == false and target and target.has_ball:
-		chase_receiver(delta)
-		move_and_slide()
-		return
-
+	# Pre-snap stance
 	if qb and not qb.play_started:
 		velocity = Vector3.ZERO
-		update_animation()
-		return
+		if not ready_played:
+			play_ready_animation()
+			ready_played = true
+		move_and_slide()
+		return  # pre-snap, nothing else happens
 
+	# Post-snap: play idle if coming from ready
+	if ready_played and qb.play_started:
+		play_idle_animation()
+		ready_played = false
+
+	# Gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		velocity.y = 0
 
+	# Cover/blitz logic
 	if mode == "cover" and target:
 		run_man_coverage(delta)
 
 	if mode == "blitz" and qb:
 		run_blitz(delta)
 
+	update_animation()
 	move_and_slide()
 
 
 func update_animation():
+	if qb and not qb.play_started:
+		return
+
 	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
 	var is_moving = horizontal_speed > 0.1
 
 	if is_moving and not was_moving:
-		print("running")
 		play_run_animation()
 
 	if not is_moving and was_moving:
-		print("idling")
 		play_idle_animation()
 
 	was_moving = is_moving
-
 
 func run_man_coverage(delta):
 	reaction_timer += delta
@@ -121,16 +127,20 @@ func _on_catch_zone_body_entered(body: Node3D) -> void:
 		has_ball = true
 		body.queue_free()
 
-
-# -------------------------
 # ANIMATION FUNCTIONS
-# -------------------------
+
 
 func play_run_animation():
 		sprite.play("run!")
 
 func play_idle_animation():
-	sprite.stop()
-	sprite.frame = 0
+	sprite.play("idle")
+
+func play_ready_animation():
+	sprite.play("ready")
+
 	
-	
+func _on_animated_sprite_3d_animation_finished(anim):
+	if anim == "ready"and qb and not qb.play_started:
+		sprite.frame = 1
+		sprite.playing = false

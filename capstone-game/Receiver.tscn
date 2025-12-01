@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2r626ewshqui"]
+[gd_scene load_steps=24 format=3 uid="uid://d2r626ewshqui"]
 
 [ext_resource type="Script" uid="uid://258pxcdv1iig" path="res://receiver.gd" id="1_j7om1"]
 [ext_resource type="Texture2D" uid="uid://dwk34e2fflueg" path="res://spritesandsuch/receiver/reciever run.png" id="2_oikqh"]
@@ -13,10 +13,6 @@ radius = 0.85
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7om1"]
 radius = 0.7
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ywb6"]
-atlas = ExtResource("2_w8y7h")
-region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvx1q"]
 atlas = ExtResource("2_w8y7h")
@@ -82,9 +78,6 @@ region = Rect2(320, 384, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2ywb6")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_cvx1q")
 }, {
 "duration": 1.0,
@@ -101,7 +94,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"catch",
-"speed": 2.5
+"speed": 4.0
 }, {
 "frames": [],
 "loop": true,
@@ -176,6 +169,6 @@ shape = SubResource("CapsuleShape3D_j7om1")
 transform = Transform3D(6.7, 0, 0, 0, 6.7, 0, 0, 0, 6.7, 0, 0, 0)
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2ywb6")
-animation = &"run-ball"
+animation = &"catch"
 
 [connection signal="body_entered" from="CatchZone" to="." method="_on_catch_zone_body_entered"]
