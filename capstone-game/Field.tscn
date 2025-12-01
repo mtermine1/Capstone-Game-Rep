@@ -1,7 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cr64oifdvch2i"]
+[gd_scene load_steps=22 format=3 uid="uid://cr64oifdvch2i"]
 
 [ext_resource type="PackedScene" uid="uid://degxoga3wq3oi" path="res://Quarterback.tscn" id="1_8j5rm"]
+[ext_resource type="Texture2D" uid="uid://b3lnb1rqkqr45" path="res://spritesandsuch/field/5m8846s5ix601.png" id="1_pmgfd"]
 [ext_resource type="PackedScene" uid="uid://d2r626ewshqui" path="res://Receiver.tscn" id="2_7sdab"]
+[ext_resource type="Texture2D" uid="uid://coj1v3iois25q" path="res://spritesandsuch/field/grass map.png" id="2_vsbwo"]
 [ext_resource type="PackedScene" uid="uid://bmoychwdya5uk" path="res://Defender.tscn" id="3_m6s6n"]
 [ext_resource type="PackedScene" uid="uid://nqjoqpddi1vj" path="res://Game Manager.tscn" id="4_48t60"]
 [ext_resource type="Script" uid="uid://dleauuefeabih" path="res://follow_cam.gd" id="5_sl1x8"]
@@ -25,7 +27,18 @@ glow_enabled = true
 size = Vector2(30, 50)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8j5rm"]
-albedo_color = Color(0.29803923, 0.6862745, 0.3137255, 1)
+albedo_texture = ExtResource("1_pmgfd")
+albedo_texture_force_srgb = true
+normal_enabled = true
+normal_scale = 4.0
+normal_texture = ExtResource("2_vsbwo")
+bent_normal_texture = ExtResource("2_vsbwo")
+anisotropy_enabled = true
+anisotropy = 1.0
+heightmap_enabled = true
+heightmap_scale = 0.18
+uv1_scale = Vector3(20, 20, 20)
+texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7sdab"]
 size = Vector3(30, 0, 50)
@@ -56,14 +69,15 @@ size = Vector3(30, 20, 2)
 
 [node name="Field" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_7sdab")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7sdab")
+
 [node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.072099686, -0.09685278, -0.05204773)
 mesh = SubResource("PlaneMesh_0m6is")
 surface_material_override/0 = SubResource("StandardMaterial3D_8j5rm")
 
@@ -80,7 +94,7 @@ mesh = SubResource("BoxMesh_0m6is")
 [node name="Area3D" type="Area3D" parent="EndzoneA"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EndzoneA/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+transform = Transform3D(0.99999994, 0, 3.5527137e-15, 0, 1, 0, -3.5527137e-15, 0, 0.99999994, 0, 0.3, 0)
 shape = SubResource("BoxShape3D_sl1x8")
 debug_color = Color(0.7713369, 0.3802708, 0.60467803, 0.41960785)
 

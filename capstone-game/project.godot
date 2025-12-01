@@ -15,6 +15,11 @@ run/main_scene="uid://cr64oifdvch2i"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/no_focus=true
+window/stretch/mode="viewport"
+
 [input]
 
 move_forward={
@@ -66,3 +71,5 @@ aim_up={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/compress_with_gpu=false
+textures/lossless_compression/force_png=true
