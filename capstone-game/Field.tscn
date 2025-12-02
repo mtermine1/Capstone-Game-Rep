@@ -81,10 +81,10 @@ shadow_enabled = true
 environment = SubResource("Environment_7sdab")
 
 [node name="Ground" type="MeshInstance3D" parent="."]
-<<<<<<< HEAD
-=======
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.030749321, 0.039858818, -0.036582947)
->>>>>>> e5ebec74a67f283ac168df622b3406356798efb9
+mesh = SubResource("PlaneMesh_0m6is")
+surface_material_override/0 = SubResource("StandardMaterial3D_8j5rm")
+
 mesh = SubResource("PlaneMesh_0m6is")
 surface_material_override/0 = SubResource("StandardMaterial3D_8j5rm")
 
