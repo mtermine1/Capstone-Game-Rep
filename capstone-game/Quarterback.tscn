@@ -63,7 +63,7 @@ radius = 1.0
 [node name="Quarterback" type="CharacterBody3D" groups=["qb"]]
 script = ExtResource("1_7t48y")
 aim_speed = 0.7
-max_throw_power = 35.0
+max_throw_power = 50.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_7t48y")

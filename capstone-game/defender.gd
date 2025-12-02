@@ -100,15 +100,21 @@ func run_man_coverage(delta):
 
 func run_blitz(delta):
 	blitz_timer += delta
+
+	# NEW: if QB crosses LOS with ball, start blitz immediately
+	if gm and gm.qb_past_los and qb and qb.has_ball:
+		blitz_started = true
+
 	if blitz_timer >= blitz_delay:
 		blitz_started = true
 
-	if blitz_started:
+	if blitz_started and qb:
 		var dir = (qb.global_position - global_position).normalized()
 		velocity.x = dir.x * speed * 1.4
 		velocity.z = dir.z * speed * 1.4
 
-	update_animation()  # <- animation responds immediately
+	update_animation()
+
 
 
 func _on_hit_zone_body_entered(body: Node3D) -> void:

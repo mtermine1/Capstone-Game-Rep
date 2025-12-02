@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var speed: float = 6.0
 @export var aim_speed: float = 1.5
 @export var max_throw_power: float = 30.0
+var past_los := false
 
 var has_ball := true
 var play_started := false
@@ -35,6 +36,11 @@ func _physics_process(delta):
 		velocity = Vector3.ZERO
 		move_and_slide()
 		return
+	
+	# Update LOS state from game manager
+	if gm and gm.qb_past_los and not past_los and has_ball:
+		past_los = true
+
 
 	# Aiming ALWAYS allowed
 	var aim_x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
@@ -76,7 +82,7 @@ func _physics_process(delta):
 		velocity.y = 0
 
 	# START charging throw
-	if Input.is_action_just_pressed("throw"):
+	if not past_los and Input.is_action_just_pressed("throw"):
 		charging_throw = true
 		throw_power = 0.0
 		power_bar.visible = true
