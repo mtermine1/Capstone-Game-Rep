@@ -6,7 +6,6 @@ extends CharacterBody3D
 @export var qb: Node3D
 
 @onready var gm = get_tree().get_first_node_in_group("game_manager")
-
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
 var start_position: Vector3
@@ -15,9 +14,11 @@ var has_ball := false
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var was_moving := false
 var is_catching := false
- 
+
+
 func _ready():
 	start_position = global_position
+
 
 func _physics_process(delta):
 	# Freeze until hike
@@ -42,6 +43,7 @@ func _physics_process(delta):
 	run_route(delta)
 	move_and_slide()
 
+
 func update_animation():
 	if is_catching:
 		return
@@ -60,6 +62,7 @@ func update_animation():
 
 	was_moving = is_moving
 
+
 func run_route(delta):
 	if running_route:
 		var forward = -transform.basis.z
@@ -71,7 +74,7 @@ func run_route(delta):
 			running_route = false
 			velocity = Vector3.ZERO
 			update_animation()
-			
+
 
 func player_control(delta):
 	var input_dir = Vector3.ZERO
@@ -86,6 +89,7 @@ func player_control(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed_after_catch)
 		velocity.z = move_toward(velocity.z, 0, speed_after_catch)
+
 
 func _on_catch_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("football") and not is_catching:
@@ -105,12 +109,14 @@ func _on_catch_zone_body_entered(body: Node3D) -> void:
 # ANIMATION FUNCTIONS
 
 func play_run_animation():
-		sprite.play("run-rc")
- 
+	sprite.play("run-rc")
+
+
 func play_idle_animation():
 	sprite.stop()
 	sprite.frame = 0
-	
+
+
 func play_catch_animation() -> void:
 	if is_catching:
 		return
@@ -125,6 +131,7 @@ func play_catch_animation() -> void:
 
 	is_catching = false
 	update_animation()
+
 
 func play_run_with_ball_animation():
 	sprite.play("run-ball")

@@ -81,10 +81,6 @@ shadow_enabled = true
 environment = SubResource("Environment_7sdab")
 
 [node name="Ground" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.030749321, 0.039858818, -0.036582947)
-mesh = SubResource("PlaneMesh_0m6is")
-surface_material_override/0 = SubResource("StandardMaterial3D_8j5rm")
-
 mesh = SubResource("PlaneMesh_0m6is")
 surface_material_override/0 = SubResource("StandardMaterial3D_8j5rm")
 
@@ -151,14 +147,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06354594, 0.75, 8.328519)
 speed = 5.0
 cushion = null
 reaction_time = 1.0
-blitz_delay = 6.0
+blitz_delay = 5.0
 mode = "blitz"
 qb = NodePath("../Quarterback")
 
-[node name="Game Manager" parent="." node_paths=PackedStringArray("line_of_scrimmage_node", "qb") instance=ExtResource("4_48t60")]
+[node name="Game Manager" parent="." instance=ExtResource("4_48t60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.456778, 0, 10.544127)
-line_of_scrimmage_node = NodePath("../LineOfScrimmage")
-qb = NodePath("../Quarterback")
 
 [node name="FollowCam" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 6, 10)
@@ -201,4 +195,5 @@ script = ExtResource("9_63o6r")
 gm = NodePath("../../Game Manager")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
 shape = SubResource("BoxShape3D_q764i")
