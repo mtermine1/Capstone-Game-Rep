@@ -61,6 +61,7 @@ height = 1.5
 radius = 1.0
 
 [node name="Quarterback" type="CharacterBody3D" groups=["qb"]]
+collision_mask = 3
 script = ExtResource("1_7t48y")
 aim_speed = 0.7
 max_throw_power = 50.0

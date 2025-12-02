@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cr64oifdvch2i"]
+[gd_scene load_steps=28 format=3 uid="uid://cr64oifdvch2i"]
 
 [ext_resource type="PackedScene" uid="uid://degxoga3wq3oi" path="res://Quarterback.tscn" id="1_8j5rm"]
 [ext_resource type="Texture2D" uid="uid://b3lnb1rqkqr45" path="res://spritesandsuch/field/5m8846s5ix601.png" id="1_pmgfd"]
@@ -71,6 +71,16 @@ size = Vector3(30, 20, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_q764i"]
 size = Vector3(30, 0.2, 0.3)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_63o6r"]
+albedo_color = Color(0.7315374, 0.69356596, 0.13013041, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6tmj7"]
+material = SubResource("StandardMaterial3D_63o6r")
+size = Vector3(30, 0.2, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u4cvj"]
+size = Vector3(30, 5, 0.1)
+
 [node name="Field" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -123,36 +133,39 @@ mesh = SubResource("BoxMesh_8j5rm")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 15)
 mesh = SubResource("BoxMesh_8j5rm")
 
-[node name="Quarterback" parent="." instance=ExtResource("1_8j5rm")]
+[node name="Quarterback" parent="." node_paths=PackedStringArray("line_of_scrimmage") instance=ExtResource("1_8j5rm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 15)
 max_throw_power = 15.0
+line_of_scrimmage = NodePath("../LineOfScrimmage")
 
 [node name="Receiver" parent="." node_paths=PackedStringArray("qb") instance=ExtResource("2_7sdab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 15)
 speed = 6.0
 qb = NodePath("../Quarterback")
 
-[node name="DefenderCover" parent="." node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
+[node name="DefenderCover" parent="." node_paths=PackedStringArray("target", "qb", "line_of_scrimmage") instance=ExtResource("3_m6s6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 10.376906)
-speed = null
-cushion = 2.0
+cushion = 4.0
 reaction_time = 1.0
 blitz_delay = 6.0
-mode = null
 target = NodePath("../Receiver")
 qb = NodePath("../Quarterback")
+line_of_scrimmage = NodePath("../LineOfScrimmage")
 
-[node name="DefenderBlitz" parent="." node_paths=PackedStringArray("qb") instance=ExtResource("3_m6s6n")]
+[node name="DefenderBlitz" parent="." node_paths=PackedStringArray("qb", "line_of_scrimmage") instance=ExtResource("3_m6s6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06354594, 0.75, 8.328519)
-speed = 5.0
-cushion = null
+speed = 0.0
 reaction_time = 1.0
 blitz_delay = 5.0
 mode = "blitz"
 qb = NodePath("../Quarterback")
+line_of_scrimmage = NodePath("../LineOfScrimmage")
 
-[node name="Game Manager" parent="." instance=ExtResource("4_48t60")]
+[node name="Game Manager" parent="." node_paths=PackedStringArray("line_of_scrimmage_node", "qb", "receiver") instance=ExtResource("4_48t60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.456778, 0, 10.544127)
+line_of_scrimmage_node = NodePath("../LineOfScrimmage")
+qb = NodePath("../Quarterback")
+receiver = NodePath("../Receiver")
 
 [node name="FollowCam" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 6, 10)
@@ -195,5 +208,16 @@ script = ExtResource("9_63o6r")
 gm = NodePath("../../Game Manager")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
 shape = SubResource("BoxShape3D_q764i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LineOfScrimmage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+mesh = SubResource("BoxMesh_6tmj7")
+
+[node name="LOSWall" type="StaticBody3D" parent="LineOfScrimmage"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/LOSWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12)
+shape = SubResource("BoxShape3D_u4cvj")

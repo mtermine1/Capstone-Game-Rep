@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var speed: float = 6.0
 @export var aim_speed: float = 1.5
 @export var max_throw_power: float = 30.0
+@export var line_of_scrimmage: Node3D     # <-- NEW
 var past_los := false
 
 var has_ball := true
@@ -12,7 +13,6 @@ var play_started := false
 var throw_power: float = 0.0
 var charging_throw := false
 @onready var ball_spawn: Node3D = $Head/Camera/BallSpawn
-
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var football_scene := preload("res://Football.tscn")
@@ -22,13 +22,16 @@ var football_scene := preload("res://Football.tscn")
 @onready var aim_arrow = $Head/AimArrow
 @onready var power_bar: AnimatedSprite3D = $Head/Camera/PowerBar
 
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	power_bar.visible = false
 
+
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 
 func _physics_process(delta):
 	# If QB no longer has the ball (WR controls), freeze QB
@@ -37,10 +40,9 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 	
-	# Update LOS state from game manager
+	# Update LOS state from game manager (used for other logic if needed)
 	if gm and gm.qb_past_los and not past_los and has_ball:
 		past_los = true
-
 
 	# Aiming ALWAYS allowed
 	var aim_x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
@@ -81,7 +83,8 @@ func _physics_process(delta):
 	else:
 		velocity.y = 0
 
-	# START charging throw
+
+	# START charging throw (still controlled by past_los if you keep that rule)
 	if not past_los and Input.is_action_just_pressed("throw"):
 		charging_throw = true
 		throw_power = 0.0
@@ -106,6 +109,7 @@ func _physics_process(delta):
 		_spawn_ball()
 
 	move_and_slide()
+
 
 func _spawn_ball():
 	var ball = football_scene.instantiate()

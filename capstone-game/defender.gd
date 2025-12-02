@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var gm = get_tree().get_first_node_in_group("game_manager")
 @export var target: Node3D
 @export var qb: Node3D
+@export var line_of_scrimmage: Node3D      # <-- NEW
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
 var was_moving := false
@@ -75,6 +76,7 @@ func update_animation():
 
 	was_moving = is_moving
 
+
 func run_man_coverage(delta):
 	reaction_timer += delta
 	if reaction_timer < reaction_time:
@@ -101,7 +103,7 @@ func run_man_coverage(delta):
 func run_blitz(delta):
 	blitz_timer += delta
 
-	# NEW: if QB crosses LOS with ball, start blitz immediately
+	# Existing logic: can also use gm.qb_past_los if you keep that feature
 	if gm and gm.qb_past_los and qb and qb.has_ball:
 		blitz_started = true
 
@@ -116,14 +118,27 @@ func run_blitz(delta):
 	update_animation()
 
 
-
 func _on_hit_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("qb") and body.has_ball:
 		print("tackled qb")
+
+		# Move LOS to where QB was tackled
+		if line_of_scrimmage:
+			var pos = line_of_scrimmage.global_position
+			pos.z = body.global_position.z
+			line_of_scrimmage.global_position = pos
+
 		gm.end_play("tackle_qb")
 
 	if body.is_in_group("wr") and body.has_ball:
 		print("tackled wr")
+
+		# Move LOS to where WR was tackled
+		if line_of_scrimmage:
+			var pos = line_of_scrimmage.global_position
+			pos.z = body.global_position.z
+			line_of_scrimmage.global_position = pos
+
 		gm.end_play("tackle_wr")
 
 
@@ -133,20 +148,22 @@ func _on_catch_zone_body_entered(body: Node3D) -> void:
 		has_ball = true
 		body.queue_free()
 
+
 # ANIMATION FUNCTIONS
 
-
 func play_run_animation():
-		sprite.play("run!")
+	sprite.play("run!")
+
 
 func play_idle_animation():
 	sprite.play("idle")
 
+
 func play_ready_animation():
 	sprite.play("ready")
 
-	
+
 func _on_animated_sprite_3d_animation_finished(anim):
-	if anim == "ready"and qb and not qb.play_started:
+	if anim == "ready" and qb and not qb.play_started:
 		sprite.frame = 1
 		sprite.playing = false
