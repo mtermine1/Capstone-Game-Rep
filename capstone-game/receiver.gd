@@ -96,6 +96,7 @@ func _on_catch_zone_body_entered(body: Node3D) -> void:
 		print("Receiver caught the ball!")
 
 		has_ball = true
+		body.has_been_caught = true
 		body.queue_free()  # Remove football immediately
 
 		await play_catch_animation()  # Wait for animation to finish

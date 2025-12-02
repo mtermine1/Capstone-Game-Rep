@@ -40,9 +40,7 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 	
-	# Update LOS state from game manager (used for other logic if needed)
-	if gm and gm.qb_past_los and not past_los and has_ball:
-		past_los = true
+	
 
 	# Aiming ALWAYS allowed
 	var aim_x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")

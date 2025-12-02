@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cr64oifdvch2i"]
+[gd_scene load_steps=30 format=3 uid="uid://cr64oifdvch2i"]
 
 [ext_resource type="PackedScene" uid="uid://degxoga3wq3oi" path="res://Quarterback.tscn" id="1_8j5rm"]
 [ext_resource type="Texture2D" uid="uid://b3lnb1rqkqr45" path="res://spritesandsuch/field/5m8846s5ix601.png" id="1_pmgfd"]
@@ -59,8 +59,14 @@ size = Vector3(0.3, 0.3, 30)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vsbwo"]
 size = Vector3(2, 20, 50)
 
+[sub_resource type="BoxMesh" id="BoxMesh_63o6r"]
+size = Vector3(0.3, 0.3, 50)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_2prm6"]
 size = Vector3(2, 20, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q764i"]
+size = Vector3(0.3, 0.3, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_63o6r"]
 size = Vector3(30, 20, 2)
@@ -90,7 +96,8 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7sdab")
 
-[node name="Ground" type="MeshInstance3D" parent="."]
+[node name="Ground" type="MeshInstance3D" parent="." groups=["ground"]]
+layers = 8
 mesh = SubResource("PlaneMesh_0m6is")
 surface_material_override/0 = SubResource("StandardMaterial3D_8j5rm")
 
@@ -115,7 +122,9 @@ debug_color = Color(0.7713369, 0.3802708, 0.60467803, 0.41960785)
 transform = Transform3D(-0.00015703589, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -0.00015703589, 0, 0, -22.5)
 mesh = SubResource("BoxMesh_0m6is")
 
-[node name="Area3D" type="Area3D" parent="EndzoneB"]
+[node name="Area3D" type="Area3D" parent="EndzoneB" node_paths=PackedStringArray("gm")]
+script = ExtResource("9_63o6r")
+gm = NodePath("../../Game Manager")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EndzoneB/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
@@ -126,11 +135,11 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 mesh = SubResource("BoxMesh_8j5rm")
 
 [node name="QuarterFieldLineA" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 10)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -10)
 mesh = SubResource("BoxMesh_8j5rm")
 
 [node name="QuarterFieldLineB" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 15)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 10)
 mesh = SubResource("BoxMesh_8j5rm")
 
 [node name="Quarterback" parent="." node_paths=PackedStringArray("line_of_scrimmage") instance=ExtResource("1_8j5rm")]
@@ -182,12 +191,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 shape = SubResource("BoxShape3D_vsbwo")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sideline2"]
+mesh = SubResource("BoxMesh_63o6r")
+
 [node name="Sideline1" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sideline1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 shape = SubResource("BoxShape3D_2prm6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sideline1"]
+mesh = SubResource("BoxMesh_q764i")
 
 [node name="BoundaryEndZoneB" type="StaticBody3D" parent="."]
 
@@ -221,3 +236,5 @@ collision_layer = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/LOSWall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12)
 shape = SubResource("BoxShape3D_u4cvj")
+
+[connection signal="body_entered" from="EndzoneB/Area3D" to="EndzoneB/Area3D" method="_on_body_entered"]

@@ -42,7 +42,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 3.0
+"speed": 4.0
 }]
 
 [node name="PowerBar" type="Node3D"]

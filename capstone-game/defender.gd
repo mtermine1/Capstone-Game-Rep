@@ -103,9 +103,6 @@ func run_man_coverage(delta):
 func run_blitz(delta):
 	blitz_timer += delta
 
-	# Existing logic: can also use gm.qb_past_los if you keep that feature
-	if gm and gm.qb_past_los and qb and qb.has_ball:
-		blitz_started = true
 
 	if blitz_timer >= blitz_delay:
 		blitz_started = true
@@ -146,6 +143,7 @@ func _on_catch_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("football"):
 		print("Interception!")
 		has_ball = true
+		body.has_been_caught = true
 		body.queue_free()
 
 
