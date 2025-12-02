@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://d2r626ewshqui"]
+[gd_scene load_steps=31 format=3 uid="uid://d2r626ewshqui"]
 
 [ext_resource type="Script" uid="uid://258pxcdv1iig" path="res://receiver.gd" id="1_j7om1"]
 [ext_resource type="Texture2D" uid="uid://dwk34e2fflueg" path="res://spritesandsuch/receiver/reciever run.png" id="2_oikqh"]
 [ext_resource type="Texture2D" uid="uid://cryrvmsfo6ab2" path="res://spritesandsuch/receiver/receiver catch.png" id="2_w8y7h"]
 [ext_resource type="Texture2D" uid="uid://b2n3tudi5nh0y" path="res://spritesandsuch/receiver/receiver run ball.png" id="3_qkcba"]
+[ext_resource type="Texture2D" uid="uid://chsq3ieoqjth" path="res://spritesandsuch/receiver/rc run direction fixed.png" id="4_bcyvi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oikqh"]
 radius = 0.7
@@ -49,6 +50,30 @@ region = Rect2(256, 256, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tyx8v"]
 atlas = ExtResource("3_qkcba")
 region = Rect2(320, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ywb6"]
+atlas = ExtResource("4_bcyvi")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vn82"]
+atlas = ExtResource("4_bcyvi")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehari"]
+atlas = ExtResource("4_bcyvi")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68vkb"]
+atlas = ExtResource("4_bcyvi")
+region = Rect2(192, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcl8v"]
+atlas = ExtResource("4_bcyvi")
+region = Rect2(256, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xegon"]
+atlas = ExtResource("4_bcyvi")
+region = Rect2(320, 320, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w8y7h"]
 atlas = ExtResource("2_oikqh")
@@ -126,6 +151,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_2ywb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vn82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehari")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68vkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcl8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xegon")
+}],
+"loop": true,
+"name": &"run-ball-back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_w8y7h")
 }, {
 "duration": 1.0,
@@ -170,6 +218,6 @@ transform = Transform3D(6.7, 0, 0, 0, 6.7, 0, 0, 0, 6.7, 0, 0, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2ywb6")
-animation = &"catch"
+animation = &"run-ball"
 
 [connection signal="body_entered" from="CatchZone" to="." method="_on_catch_zone_body_entered"]

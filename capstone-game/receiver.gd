@@ -134,4 +134,4 @@ func play_catch_animation() -> void:
 
 
 func play_run_with_ball_animation():
-	sprite.play("run-ball")
+	sprite.play("run-ball-back")
