@@ -1,0 +1,70 @@
+[gd_scene load_steps=15 format=3 uid="uid://by0hdmqnfqmxn"]
+
+[ext_resource type="Texture2D" uid="uid://03wegjfiw1ef" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-1 4.png" id="1_0n104"]
+[ext_resource type="Texture2D" uid="uid://b140cnuecme4u" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-2 4.png" id="2_1wnns"]
+[ext_resource type="Texture2D" uid="uid://cbfoq3abvjp8b" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-3 4.png" id="3_k7m1j"]
+[ext_resource type="Texture2D" uid="uid://bbgcpbe53ov20" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-4 4.png" id="4_6uwck"]
+[ext_resource type="Texture2D" uid="uid://c1i3kadfok1df" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-5 4.png" id="5_eq162"]
+[ext_resource type="Texture2D" uid="uid://c7fiofs2pl0hk" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-6 4.png" id="6_sbeif"]
+[ext_resource type="Texture2D" uid="uid://crpbx5134gxbp" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-7 4.png" id="7_lpeqd"]
+[ext_resource type="Texture2D" uid="uid://bhr4ptn0f3prh" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-8 4.png" id="8_rtr4a"]
+[ext_resource type="Texture2D" uid="uid://cw86rkkdsshnr" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-9 4.png" id="9_auydp"]
+[ext_resource type="Texture2D" uid="uid://qv85plmwav3d" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-10.png" id="10_gnvxr"]
+[ext_resource type="Texture2D" uid="uid://bcmbp6umhnpal" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-11.png" id="11_hhhwo"]
+[ext_resource type="Texture2D" uid="uid://cgrjtn1ingkkg" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-12.png" id="12_wfdcq"]
+[ext_resource type="Texture2D" uid="uid://bjefpew1letrv" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-13.png" id="13_twxmy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_etswb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0n104")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1wnns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_k7m1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6uwck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_eq162")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sbeif")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lpeqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rtr4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_auydp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gnvxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hhhwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_wfdcq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_twxmy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(585.00006, 339.00003)
+scale = Vector2(0.49100718, 0.49100724)
+sprite_frames = SubResource("SpriteFrames_etswb")
+autoplay = "default"
