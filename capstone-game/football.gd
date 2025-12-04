@@ -1,21 +1,22 @@
 extends RigidBody3D
 
 var has_been_caught := false
-@export var gm: Node
+@onready var gm = get_tree().get_first_node_in_group("game_manager")
 
-func _ready():
-	# Auto-assign Game Manager if not set
-	if not gm:
-		gm = get_tree().get_first_node_in_group("game_manager")
-
-	# Connect GroundCheck signal
-	$GroundCheck.body_entered.connect(_on_ground_hit)
-
-func _on_ground_hit(body):
+func _physics_process(delta):
 	if has_been_caught:
 		return
 
-	if body.is_in_group("ground"):
-		print("INCOMPLETE PASS — ball hit ground")
-		gm.end_play("incomplete")
-		queue_free()
+	var ray = $GroundCheck
+
+	# If ray hits something
+	if ray.is_colliding():
+		var collider = ray.get_collider()
+
+		# Check if it's the ground
+		if collider.is_in_group("ground"):
+			print("INCOMPLETE PASS – ball hit ground")
+
+			gm.end_play("incomplete")
+
+			queue_free()

@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var route_distance: float = 15.0
 @export var speed_after_catch: float = 6.0
 @export var qb: Node3D
+@export var route_type: String = "curl" # "curl", "fly", "slant"
 
 @onready var gm = get_tree().get_first_node_in_group("game_manager")
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
@@ -14,32 +15,43 @@ var has_ball := false
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var was_moving := false
 var is_catching := false
+var route_step := 0
 
 
 func _ready():
 	start_position = global_position
 
 
+func set_route(new_route: String):
+	route_type = new_route
+	route_step = 0
+	running_route = true
+	start_position = global_position
+
+	if route_type == "fly":
+		route_distance = 20.0
+	elif route_type == "slant":
+		route_distance = 8.0
+	elif route_type == "curl":
+		route_distance = 15.0
+
+
 func _physics_process(delta):
-	# Freeze until hike
 	if qb and not qb.play_started:
 		velocity = Vector3.ZERO
 		move_and_slide()
 		return
 
-	# Freeze while catch animation plays
 	if is_catching:
 		move_and_slide()
 		return
 
-	# After catch, player takes control
 	if has_ball:
 		player_control(delta)
 		update_animation()
 		move_and_slide()
 		return
 
-	# Otherwise run the assigned route
 	run_route(delta)
 	move_and_slide()
 
@@ -64,16 +76,47 @@ func update_animation():
 
 
 func run_route(delta):
-	if running_route:
-		var forward = -transform.basis.z
+	if not running_route:
+		return
+
+	var forward = -transform.basis.z
+	var right = transform.basis.x
+
+	if route_type == "fly":
 		velocity.x = forward.x * speed
 		velocity.z = forward.z * speed
-		update_animation()  # <- Ensure animation triggers immediately
-
 		if global_position.distance_to(start_position) >= route_distance:
 			running_route = false
 			velocity = Vector3.ZERO
-			update_animation()
+
+	elif route_type == "slant":
+		if route_step == 0:
+			velocity.x = forward.x * speed
+			velocity.z = forward.z * speed
+			if global_position.distance_to(start_position) >= 4.0:
+				route_step = 1
+		elif route_step == 1:
+			var slant_dir = (forward + right).normalized()
+			velocity.x = slant_dir.x * speed
+			velocity.z = slant_dir.z * speed
+			if global_position.distance_to(start_position) >= route_distance:
+				running_route = false
+				velocity = Vector3.ZERO
+
+	elif route_type == "curl":
+		if route_step == 0:
+			velocity.x = forward.x * speed
+			velocity.z = forward.z * speed
+			if global_position.distance_to(start_position) >= route_distance:
+				route_step = 1
+		elif route_step == 1:
+			velocity.x = -forward.x * speed
+			velocity.z = -forward.z * speed
+			if global_position.distance_to(start_position) <= 1.0:
+				running_route = false
+				velocity = Vector3.ZERO
+
+	update_animation()
 
 
 func player_control(delta):
@@ -94,20 +137,14 @@ func player_control(delta):
 func _on_catch_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("football") and not is_catching:
 		print("Receiver caught the ball!")
-
 		has_ball = true
 		body.has_been_caught = true
-		body.queue_free()  # Remove football immediately
-
-		await play_catch_animation()  # Wait for animation to finish
-
+		body.queue_free()
+		await play_catch_animation()
 		qb.get_node("Head/Camera").current = false
 		$"/root/Field/FollowCam".current = true
-
 		gm.end_play("catch")
 
-
-# ANIMATION FUNCTIONS
 
 func play_run_animation():
 	sprite.play("run-rc")
@@ -121,15 +158,11 @@ func play_idle_animation():
 func play_catch_animation() -> void:
 	if is_catching:
 		return
-
 	is_catching = true
 	velocity = Vector3.ZERO
-
 	sprite.stop()
 	sprite.play("catch")
-
 	await sprite.animation_finished
-
 	is_catching = false
 	update_animation()
 

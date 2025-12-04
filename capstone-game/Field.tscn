@@ -96,14 +96,15 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7sdab")
 
-[node name="Ground" type="MeshInstance3D" parent="." groups=["ground"]]
+[node name="Ground" type="MeshInstance3D" parent="."]
 layers = 8
 mesh = SubResource("PlaneMesh_0m6is")
 surface_material_override/0 = SubResource("StandardMaterial3D_8j5rm")
 
-[node name="Ground Collission" type="StaticBody3D" parent="."]
+[node name="Ground Collission" type="StaticBody3D" parent="." groups=["ground"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground Collission"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 shape = SubResource("BoxShape3D_7sdab")
 debug_color = Color(0.7128054, 0.41881114, 0.6452741, 0.41960785)
 
@@ -170,9 +171,8 @@ mode = "blitz"
 qb = NodePath("../Quarterback")
 line_of_scrimmage = NodePath("../LineOfScrimmage")
 
-[node name="Game Manager" parent="." node_paths=PackedStringArray("line_of_scrimmage_node", "qb", "receiver") instance=ExtResource("4_48t60")]
+[node name="Game Manager" parent="." node_paths=PackedStringArray("qb", "receiver") instance=ExtResource("4_48t60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.456778, 0, 10.544127)
-line_of_scrimmage_node = NodePath("../LineOfScrimmage")
 qb = NodePath("../Quarterback")
 receiver = NodePath("../Receiver")
 
