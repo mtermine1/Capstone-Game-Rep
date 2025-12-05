@@ -1,64 +1,85 @@
-[gd_scene load_steps=15 format=3 uid="uid://by0hdmqnfqmxn"]
+[gd_scene load_steps=21 format=3 uid="uid://by0hdmqnfqmxn"]
 
-[ext_resource type="Texture2D" uid="uid://03wegjfiw1ef" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-1 4.png" id="1_0n104"]
-[ext_resource type="Texture2D" uid="uid://b140cnuecme4u" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-2 4.png" id="2_1wnns"]
-[ext_resource type="Texture2D" uid="uid://cbfoq3abvjp8b" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-3 4.png" id="3_k7m1j"]
-[ext_resource type="Texture2D" uid="uid://bbgcpbe53ov20" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-4 4.png" id="4_6uwck"]
-[ext_resource type="Texture2D" uid="uid://c1i3kadfok1df" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-5 4.png" id="5_eq162"]
-[ext_resource type="Texture2D" uid="uid://c7fiofs2pl0hk" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-6 4.png" id="6_sbeif"]
-[ext_resource type="Texture2D" uid="uid://crpbx5134gxbp" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-7 4.png" id="7_lpeqd"]
-[ext_resource type="Texture2D" uid="uid://bhr4ptn0f3prh" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-8 4.png" id="8_rtr4a"]
-[ext_resource type="Texture2D" uid="uid://cw86rkkdsshnr" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-9 4.png" id="9_auydp"]
-[ext_resource type="Texture2D" uid="uid://qv85plmwav3d" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-10.png" id="10_gnvxr"]
-[ext_resource type="Texture2D" uid="uid://bcmbp6umhnpal" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-11.png" id="11_hhhwo"]
-[ext_resource type="Texture2D" uid="uid://cgrjtn1ingkkg" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-12.png" id="12_wfdcq"]
-[ext_resource type="Texture2D" uid="uid://bjefpew1letrv" path="res://animations/Cut scenes or whateva/TACKLED screen/Untitled_Artwork-13.png" id="13_twxmy"]
+[ext_resource type="Texture2D" uid="uid://bqld1ml1ljcbo" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-1 4.png" id="1_sbeif"]
+[ext_resource type="Texture2D" uid="uid://de7birdiqfbvw" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-2 4.png" id="2_lpeqd"]
+[ext_resource type="Texture2D" uid="uid://c6h1egla14pba" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-3 4.png" id="3_rtr4a"]
+[ext_resource type="Texture2D" uid="uid://o3q5dokruvma" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-4 4.png" id="4_auydp"]
+[ext_resource type="Texture2D" uid="uid://b0nt8nbh5ktbg" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-5 4.png" id="5_gnvxr"]
+[ext_resource type="Texture2D" uid="uid://dw2cq7rdnmot5" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-6 4.png" id="6_hhhwo"]
+[ext_resource type="Texture2D" uid="uid://op0unv0gpdt7" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-7 4.png" id="7_wfdcq"]
+[ext_resource type="Texture2D" uid="uid://u2x4irwe3kmj" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-8 4.png" id="8_twxmy"]
+[ext_resource type="Texture2D" uid="uid://cni6ub5we824a" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-9 4.png" id="9_etswb"]
+[ext_resource type="Texture2D" uid="uid://cu4uaebvaq8tn" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-10.png" id="10_guhrp"]
+[ext_resource type="Texture2D" uid="uid://l5t6gqjp57ma" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-11.png" id="11_57sdr"]
+[ext_resource type="Texture2D" uid="uid://n3nbfbfloovy" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-12.png" id="12_iqv4u"]
+[ext_resource type="Texture2D" uid="uid://cfpb2k0rt507u" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-13.png" id="13_c7lmh"]
+[ext_resource type="Texture2D" uid="uid://covx5m758el7e" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-14.png" id="14_go3be"]
+[ext_resource type="Texture2D" uid="uid://buys8srrb846c" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-15.png" id="15_wy8e7"]
+[ext_resource type="Texture2D" uid="uid://di4dwoa56sln6" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-16.png" id="16_3axdu"]
+[ext_resource type="Texture2D" uid="uid://cg3ora6oblie5" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-17.png" id="17_vlhyt"]
+[ext_resource type="Texture2D" uid="uid://dt81rgicxsu8q" path="res://Cut scenes or whateva/tackled retry/Untitled_Artwork-18.png" id="18_7f5kx"]
+[ext_resource type="Script" uid="uid://do32gn0qtdmbe" path="res://posttacklebutton.gd" id="19_lpeqd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_etswb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_0n104")
+"texture": ExtResource("1_sbeif")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_1wnns")
+"texture": ExtResource("2_lpeqd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_k7m1j")
+"texture": ExtResource("3_rtr4a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_6uwck")
+"texture": ExtResource("4_auydp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_eq162")
+"texture": ExtResource("5_gnvxr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_sbeif")
+"texture": ExtResource("6_hhhwo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_lpeqd")
+"texture": ExtResource("7_wfdcq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_rtr4a")
+"texture": ExtResource("8_twxmy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_auydp")
+"texture": ExtResource("9_etswb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_gnvxr")
+"texture": ExtResource("10_guhrp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_hhhwo")
+"texture": ExtResource("11_57sdr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_wfdcq")
+"texture": ExtResource("12_iqv4u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_twxmy")
+"texture": ExtResource("13_c7lmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_go3be")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_wy8e7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_3axdu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vlhyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_7f5kx")
 }],
 "loop": false,
-"name": &"default",
-"speed": 3.0
+"name": &"tackled screen",
+"speed": 3.5
 }]
 
 [node name="Node2D" type="Node2D"]
@@ -67,4 +88,13 @@ animations = [{
 position = Vector2(585.00006, 339.00003)
 scale = Vector2(0.49100718, 0.49100724)
 sprite_frames = SubResource("SpriteFrames_etswb")
-autoplay = "default"
+animation = &"tackled screen"
+autoplay = "tackled screen"
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 393.0
+offset_top = 168.0
+offset_right = 827.0
+offset_bottom = 433.0
+script = ExtResource("19_lpeqd")

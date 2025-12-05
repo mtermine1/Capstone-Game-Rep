@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4mjsf4xfluph"]
+
+[ext_resource type="Texture2D" uid="uid://op41l471ov3h" path="res://Cut scenes or whateva/pickaplay.png" id="1_w5oik"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Pickaplay2" type="Sprite2D" parent="."]
+position = Vector2(-811, -343)
+scale = Vector2(1.6454544, 1.520084)
+texture = ExtResource("1_w5oik")
+
+[node name="Pickaplay" type="Sprite2D" parent="."]
+position = Vector2(584, 333.00003)
+scale = Vector2(0.41052157, 0.41052157)
+texture = ExtResource("1_w5oik")
+
+[node name="fly" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 388.0
+offset_top = 542.0
+offset_right = 779.0
+offset_bottom = 626.0
+
+[node name="curl" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 388.0
+offset_top = 388.0
+offset_right = 776.0
+offset_bottom = 472.0
+
+[node name="slant" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 384.0
+offset_top = 231.0
+offset_right = 775.0
+offset_bottom = 311.0
