@@ -58,19 +58,19 @@ size = Vector3(5, 0.3, 30)
 size = Vector3(0.3, 0.3, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vsbwo"]
-size = Vector3(2, 20, 50)
+size = Vector3(2, 100, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_63o6r"]
 size = Vector3(0.3, 0.3, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2prm6"]
-size = Vector3(2, 20, 50)
+size = Vector3(2, 100, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_q764i"]
 size = Vector3(0.3, 0.3, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_63o6r"]
-size = Vector3(30, 50, 2)
+size = Vector3(30, 100, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6tmj7"]
 size = Vector3(30, 20, 2)
