@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cr64oifdvch2i"]
+[gd_scene load_steps=31 format=3 uid="uid://cr64oifdvch2i"]
 
 [ext_resource type="PackedScene" uid="uid://degxoga3wq3oi" path="res://Quarterback.tscn" id="1_8j5rm"]
 [ext_resource type="Texture2D" uid="uid://b3lnb1rqkqr45" path="res://spritesandsuch/field/5m8846s5ix601.png" id="1_pmgfd"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmoychwdya5uk" path="res://Defender.tscn" id="3_m6s6n"]
 [ext_resource type="PackedScene" uid="uid://nqjoqpddi1vj" path="res://Game Manager.tscn" id="4_48t60"]
 [ext_resource type="Script" uid="uid://dleauuefeabih" path="res://follow_cam.gd" id="5_sl1x8"]
+[ext_resource type="PackedScene" uid="uid://crg2a4w0nkwok" path="res://Football.tscn" id="9_6tmj7"]
 [ext_resource type="Script" uid="uid://bvb0vl2fbx7gg" path="res://area_3d.gd" id="9_63o6r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0m6is"]
@@ -152,29 +153,30 @@ line_of_scrimmage = NodePath("../LineOfScrimmage")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 15)
 speed = 6.0
 qb = NodePath("../Quarterback")
+route_type = "fly"
 
-[node name="DefenderCover" parent="." node_paths=PackedStringArray("target", "qb", "line_of_scrimmage") instance=ExtResource("3_m6s6n")]
+[node name="DefenderCover" parent="." node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 10.376906)
 cushion = 4.0
 reaction_time = 1.0
 blitz_delay = 6.0
 target = NodePath("../Receiver")
 qb = NodePath("../Quarterback")
-line_of_scrimmage = NodePath("../LineOfScrimmage")
 
-[node name="DefenderBlitz" parent="." node_paths=PackedStringArray("qb", "line_of_scrimmage") instance=ExtResource("3_m6s6n")]
+[node name="DefenderBlitz" parent="." node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06354594, 0.75, 8.328519)
-speed = 0.0
+speed = 5.0
 reaction_time = 1.0
-blitz_delay = 5.0
+blitz_delay = 4.0
 mode = "blitz"
+target = NodePath("../Quarterback")
 qb = NodePath("../Quarterback")
-line_of_scrimmage = NodePath("../LineOfScrimmage")
 
 [node name="Game Manager" parent="." node_paths=PackedStringArray("qb", "receiver") instance=ExtResource("4_48t60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.456778, 0, 10.544127)
 qb = NodePath("../Quarterback")
 receiver = NodePath("../Receiver")
+football_scene = ExtResource("9_6tmj7")
 
 [node name="FollowCam" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 6, 10)

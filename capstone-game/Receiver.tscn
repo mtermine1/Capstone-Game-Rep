@@ -10,7 +10,7 @@
 radius = 0.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j7om1"]
-radius = 1.0
+radius = 1.1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7om1"]
 radius = 0.7
@@ -203,9 +203,10 @@ script = ExtResource("1_j7om1")
 shape = SubResource("CapsuleShape3D_oikqh")
 
 [node name="CatchZone" type="Area3D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CatchZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24462068, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57088995, 0)
 shape = SubResource("SphereShape3D_j7om1")
 
 [node name="HitZone" type="Area3D" parent="."]

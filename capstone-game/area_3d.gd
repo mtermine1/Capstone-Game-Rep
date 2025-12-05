@@ -12,5 +12,4 @@ func _on_body_entered(body):
 		or
 		(body.is_in_group("qb") and body.has_ball)
 	):
-		print("TOUCHDOWN for ", scoring_team)
-		gm.end_play("touchdown", scoring_team)
+		gm.end_play("touchdown")

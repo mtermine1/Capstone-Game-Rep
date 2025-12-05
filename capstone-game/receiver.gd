@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 @export var speed: float = 4.0
-@export var route_distance: float = 15.0
 @export var speed_after_catch: float = 6.0
 @export var qb: Node3D
 @export var route_type: String = "curl" # "curl", "fly", "slant"
@@ -27,13 +26,6 @@ func set_route(new_route: String):
 	route_step = 0
 	running_route = true
 	start_position = global_position
-
-	if route_type == "fly":
-		route_distance = 20.0
-	elif route_type == "slant":
-		route_distance = 8.0
-	elif route_type == "curl":
-		route_distance = 15.0
 
 
 func _physics_process(delta):
@@ -85,11 +77,10 @@ func run_route(delta):
 	if route_type == "fly":
 		velocity.x = forward.x * speed
 		velocity.z = forward.z * speed
-		if global_position.distance_to(start_position) >= route_distance:
-			running_route = false
-			velocity = Vector3.ZERO
+		update_animation()
+		return
 
-	elif route_type == "slant":
+	if route_type == "slant":
 		if route_step == 0:
 			velocity.x = forward.x * speed
 			velocity.z = forward.z * speed
@@ -99,24 +90,28 @@ func run_route(delta):
 			var slant_dir = (forward + right).normalized()
 			velocity.x = slant_dir.x * speed
 			velocity.z = slant_dir.z * speed
-			if global_position.distance_to(start_position) >= route_distance:
-				running_route = false
-				velocity = Vector3.ZERO
+		update_animation()
+		return
 
-	elif route_type == "curl":
+	if route_type == "curl":
+		var curl_forward := 8.0
+		var curl_return := 2.0
+		var dist := global_position.distance_to(start_position)
+
 		if route_step == 0:
 			velocity.x = forward.x * speed
 			velocity.z = forward.z * speed
-			if global_position.distance_to(start_position) >= route_distance:
+			if dist >= curl_forward:
 				route_step = 1
 		elif route_step == 1:
 			velocity.x = -forward.x * speed
 			velocity.z = -forward.z * speed
-			if global_position.distance_to(start_position) <= 1.0:
-				running_route = false
+			if dist <= curl_forward - curl_return:
 				velocity = Vector3.ZERO
+				running_route = false
 
-	update_animation()
+		update_animation()
+		return
 
 
 func player_control(delta):
@@ -143,7 +138,7 @@ func _on_catch_zone_body_entered(body: Node3D) -> void:
 		await play_catch_animation()
 		qb.get_node("Head/Camera").current = false
 		$"/root/Field/FollowCam".current = true
-		gm.end_play("catch")
+		gm.end_play("tackle_wr", global_position)
 
 
 func play_run_animation():

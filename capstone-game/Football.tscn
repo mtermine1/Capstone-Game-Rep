@@ -13,11 +13,11 @@ height = 0.5
 radial_segments = 16
 rings = 16
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_fjq4n"]
-radius = 0.7
+[sub_resource type="BoxShape3D" id="BoxShape3D_hp028"]
+size = Vector3(2, 1.7, 2)
 
 [node name="Football" type="RigidBody3D" groups=["football"]]
-collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_hp028")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -27,7 +27,7 @@ mesh = SubResource("CapsuleMesh_fjq4n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.0006732568, -2.9802322e-08, 0.00020310283)
-shape = SubResource("SphereShape3D_fjq4n")
+shape = SubResource("BoxShape3D_hp028")
 
 [node name="GroundCheck" type="RayCast3D" parent="."]
 target_position = Vector3(0, -0.5, 0)
