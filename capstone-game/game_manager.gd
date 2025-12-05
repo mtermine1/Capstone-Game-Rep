@@ -16,11 +16,16 @@ func spawn_ball():
 
 	football = football_scene.instantiate()
 	get_tree().current_scene.add_child(football)
-
 	var hand_pos = qb.global_position + Vector3(0, 1.3, 0)
 	football.global_position = hand_pos
 
+
 func reset_play():
+	await get_tree().create_timer(0.1).timeout
+
+	if receiver.has_method("reset_receiver"):
+		receiver.reset_receiver()
+
 	var qb_pos = qb.global_position
 	qb_pos.z = ball_spot.z
 	qb.global_position = qb_pos
@@ -31,18 +36,18 @@ func reset_play():
 	var wr_pos = receiver.global_position
 	wr_pos.z = ball_spot.z
 	receiver.global_position = wr_pos
-	receiver.has_ball = false
-	receiver.running_route = true
-	receiver.route_step = 0
+
+	for d in get_tree().get_nodes_in_group("defender"):
+		if d.has_method("reset_defender"):
+			d.reset_defender()
 
 	spawn_ball()
 	print("Ready for next play")
 
+	
+
 func end_play(result: String, ball_position: Vector3 = Vector3.ZERO):
 	match result:
-		"catch":
-			print("Play ends: catch")
-
 		"tackle_qb":
 			print("Play ends: QB tackled")
 			ball_spot = ball_position

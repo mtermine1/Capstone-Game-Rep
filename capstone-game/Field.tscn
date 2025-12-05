@@ -70,7 +70,7 @@ size = Vector3(2, 20, 50)
 size = Vector3(0.3, 0.3, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_63o6r"]
-size = Vector3(30, 20, 2)
+size = Vector3(30, 50, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6tmj7"]
 size = Vector3(30, 20, 2)
@@ -144,16 +144,15 @@ mesh = SubResource("BoxMesh_8j5rm")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 10)
 mesh = SubResource("BoxMesh_8j5rm")
 
-[node name="Quarterback" parent="." node_paths=PackedStringArray("line_of_scrimmage") instance=ExtResource("1_8j5rm")]
+[node name="Quarterback" parent="." instance=ExtResource("1_8j5rm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 15)
-max_throw_power = 15.0
-line_of_scrimmage = NodePath("../LineOfScrimmage")
+aim_speed = 1.5
+max_throw_power = 30.0
 
 [node name="Receiver" parent="." node_paths=PackedStringArray("qb") instance=ExtResource("2_7sdab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 15)
 speed = 6.0
 qb = NodePath("../Quarterback")
-route_type = "fly"
 
 [node name="DefenderCover" parent="." node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 10.376906)
