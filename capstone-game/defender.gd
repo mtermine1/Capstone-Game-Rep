@@ -21,7 +21,6 @@ var blitz_started := false
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-
 func reset_defender():
 	reaction_timer = 0.0
 	blitz_timer = 0.0
@@ -30,10 +29,7 @@ func reset_defender():
 	has_ball = false
 	velocity = Vector3.ZERO
 
-
 func _physics_process(delta):
-
-	# Pre-snap freeze
 	if qb and not qb.play_started:
 		velocity = Vector3.ZERO
 		if not ready_played:
@@ -42,18 +38,15 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 
-	# First frame after hike → clear animation
 	if ready_played and qb.play_started:
 		play_idle_animation()
 		ready_played = false
 
-	# Gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		velocity.y = 0
 
-	# COVER OR BLITZ
 	if mode == "cover" and target:
 		run_man_coverage(delta)
 
@@ -62,7 +55,6 @@ func _physics_process(delta):
 
 	update_animation()
 	move_and_slide()
-
 
 func run_man_coverage(delta):
 	reaction_timer += delta
@@ -82,11 +74,9 @@ func run_man_coverage(delta):
 		velocity.x = lerp(velocity.x, 0.0, 0.1)
 		velocity.z = lerp(velocity.z, 0.0, 0.1)
 
-
 func run_blitz(delta):
 	blitz_timer += delta
 
-	# Start blitz when timer expires
 	if not blitz_started and blitz_timer >= blitz_delay:
 		blitz_started = true
 
@@ -94,7 +84,6 @@ func run_blitz(delta):
 		var dir = (qb.global_position - global_position).normalized()
 		velocity.x = dir.x * speed * 1.4
 		velocity.z = dir.z * speed * 1.4
-
 
 func update_animation():
 	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
@@ -108,19 +97,19 @@ func update_animation():
 
 	was_moving = is_moving
 
-
-# HIT ZONE LOGIC
 func _on_hit_zone_body_entered(body):
 	if body.is_in_group("qb") and body.has_ball:
 		print("tackled qb")
+		velocity = Vector3.ZERO
+		blitz_started = false
 		gm.end_play("tackle_qb", body.global_position)
 
 	if body.is_in_group("wr") and body.has_ball:
 		print("tackled wr")
+		velocity = Vector3.ZERO
+		blitz_started = false
 		gm.end_play("tackle_wr", body.global_position)
 
-
-# CATCH / INT
 func _on_catch_zone_body_entered(body):
 	if body.is_in_group("football"):
 		print("Interception!")
@@ -128,8 +117,6 @@ func _on_catch_zone_body_entered(body):
 		body.has_been_caught = true
 		body.queue_free()
 
-
-# ANIM
 func play_run_animation(): sprite.play("run!")
 func play_idle_animation(): sprite.play("idle")
 func play_ready_animation(): sprite.play("ready")
