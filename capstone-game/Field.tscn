@@ -97,7 +97,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7sdab")
 
-[node name="Ground" type="MeshInstance3D" parent="."]
+[node name="Ground" type="MeshInstance3D" parent="." groups=["ground"]]
 layers = 8
 mesh = SubResource("PlaneMesh_0m6is")
 surface_material_override/0 = SubResource("StandardMaterial3D_8j5rm")
