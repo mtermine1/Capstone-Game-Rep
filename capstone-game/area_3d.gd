@@ -13,3 +13,4 @@ func _on_body_entered(body):
 		(body.is_in_group("qb") and body.has_ball)
 	):
 		gm.end_play("touchdown")
+		get_tree().change_scene_to_file("res://touchdown!.tscn")
