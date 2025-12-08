@@ -1,9 +1,11 @@
 extends Button
 
-func _ready() -> void:
+func _ready():
 	pressed.connect(_on_pressed)
 
 func _on_pressed():
-	var gm = get_tree().get_first_node_in_group("game_manager")
-	gm.selected_route = "curl"
-	get_tree().change_scene_to_file("res://field.tscn")
+
+	
+	GameManager.selected_route = "curl"
+
+	var result = get_tree().change_scene_to_file("res://field.tscn")

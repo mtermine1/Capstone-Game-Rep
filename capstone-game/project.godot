@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Capstone Game"
-run/main_scene="uid://cr64oifdvch2i"
+run/main_scene="uid://b4mjsf4xfluph"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://game_manager.gd"
 
 [display]
 

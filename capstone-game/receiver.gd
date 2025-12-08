@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var qb: Node3D
 @export var route_type: String = "curl"
 
-@onready var gm = get_tree().get_first_node_in_group("game_manager")
+@onready var gm = GameManager 
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
 var start_position: Vector3

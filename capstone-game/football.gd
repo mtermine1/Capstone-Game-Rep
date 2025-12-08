@@ -18,5 +18,6 @@ func _physics_process(delta):
 			print("INCOMPLETE PASS – ball hit ground")
 
 			gm.end_play("incomplete")
+			get_tree().change_scene_to_file("res://incomplete!.tscn")
 
 			queue_free()

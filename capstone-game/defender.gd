@@ -103,12 +103,13 @@ func _on_hit_zone_body_entered(body):
 		velocity = Vector3.ZERO
 		blitz_started = false
 		gm.end_play("tackle_qb", body.global_position)
+		get_tree().change_scene_to_file("res://tackled!.tscn")
 
 	if body.is_in_group("wr") and body.has_ball:
 		print("tackled wr")
 		velocity = Vector3.ZERO
 		blitz_started = false
-		gm.end_play("tackle_wr", body.global_position)
+		get_tree().change_scene_to_file("res://tackled!.tscn")
 
 func _on_catch_zone_body_entered(body):
 	if body.is_in_group("football"):
