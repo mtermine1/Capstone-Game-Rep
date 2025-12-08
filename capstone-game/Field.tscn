@@ -73,7 +73,7 @@ size = Vector3(0.3, 0.3, 50)
 size = Vector3(30, 100, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6tmj7"]
-size = Vector3(30, 20, 2)
+size = Vector3(30, 100, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q764i"]
 size = Vector3(30, 0.2, 0.3)
@@ -145,7 +145,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 mesh = SubResource("BoxMesh_8j5rm")
 
 [node name="Quarterback" parent="." instance=ExtResource("1_8j5rm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 15)
 aim_speed = 1.5
 max_throw_power = 30.0
 
@@ -153,6 +153,7 @@ max_throw_power = 30.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 15)
 speed = 6.0
 qb = NodePath("../Quarterback")
+route_type = "fly"
 
 [node name="DefenderCover" parent="." node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 10.376906)
@@ -166,7 +167,7 @@ qb = NodePath("../Quarterback")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06354594, 0.75, 8.328519)
 speed = 5.0
 reaction_time = 1.0
-blitz_delay = 4.0
+blitz_delay = 5.0
 mode = "blitz"
 target = NodePath("../Quarterback")
 qb = NodePath("../Quarterback")
@@ -187,6 +188,7 @@ height = 3.0
 
 [node name="Sideline2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sideline2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
@@ -197,21 +199,25 @@ mesh = SubResource("BoxMesh_63o6r")
 
 [node name="Sideline1" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sideline1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 shape = SubResource("BoxShape3D_2prm6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Sideline1"]
+layers = 5
 mesh = SubResource("BoxMesh_q764i")
 
 [node name="BoundaryEndZoneB" type="StaticBody3D" parent="."]
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BoundaryEndZoneB"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26)
 shape = SubResource("BoxShape3D_63o6r")
 
 [node name="BoundaryEndZoneA" type="StaticBody3D" parent="."]
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BoundaryEndZoneA"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26)
