@@ -1,11 +1,25 @@
 extends Button
 
+func _ready():
+	pressed.connect(_on_pressed)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _on_pressed():
+	var gm = get_tree().get_first_node_in_group("game_manager")
 
+	if not gm:
+		print("❌ No GameManager found!")
+		return
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	print("Route BEFORE:", gm.selected_route)
+
+	gm.selected_route = "slant"
+
+	print("Route AFTER:", gm.selected_route)
+
+	# 🔥 IMPORTANT FIX:
+	# Tell the receiver to actually update its route right now
+	if gm.receiver and gm.receiver.has_method("set_route"):
+		gm.receiver.set_route("slant")
+		print("Receiver route updated to slant")
+	
+	get_tree().change_scene_to_file("res://Field.tscn")
