@@ -10,6 +10,12 @@ var ball_spot: Vector3 = Vector3.ZERO
 func start_play():
 	print("Play started")
 
+	# Ensure QB is safely above ground at play start
+	var qb_pos = qb.global_position
+	qb_pos.y = 1.0     # ← FIX
+	qb.global_position = qb_pos
+
+
 func spawn_ball():
 	if football:
 		football.queue_free()
@@ -20,14 +26,17 @@ func spawn_ball():
 	football.global_position = hand_pos
 
 
+
 func reset_play():
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.1).timeout   # fade-out window
 
 	if receiver.has_method("reset_receiver"):
 		receiver.reset_receiver()
 
 	var qb_pos = qb.global_position
+	qb_pos.y = 1.0     # ← FIX: reposition QB above the ground
 	qb_pos.z = ball_spot.z
+	qb.global_position = qb_pos
 	qb.global_position = qb_pos
 	qb.play_started = false
 	qb.velocity = Vector3.ZERO
@@ -41,10 +50,12 @@ func reset_play():
 		if d.has_method("reset_defender"):
 			d.reset_defender()
 
+	await get_tree().process_frame    # ← **required fix**
 	spawn_ball()
+
 	print("Ready for next play")
 
-	
+
 
 func end_play(result: String, ball_position: Vector3 = Vector3.ZERO):
 	match result:
