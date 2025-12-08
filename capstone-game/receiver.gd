@@ -18,6 +18,9 @@ var route_step := 0
 
 func _ready():
 	start_position = global_position
+	if gm:
+		set_route(gm.selected_route)
+
 
 func set_route(new_route: String):
 	route_type = new_route

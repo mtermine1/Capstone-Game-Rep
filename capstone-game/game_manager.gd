@@ -7,6 +7,8 @@ extends Node3D
 var football: Node3D
 var ball_spot: Vector3 = Vector3.ZERO
 
+var selected_route: String = "curl"
+
 func start_play():
 	print("Play started")
 
