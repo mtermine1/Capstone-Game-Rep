@@ -46,7 +46,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"aim",
-"speed": 3.0
+"speed": 5.0
 }, {
 "frames": [],
 "loop": true,

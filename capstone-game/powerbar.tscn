@@ -40,9 +40,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_w1qya")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 6.0
+"speed": 6.5
 }]
 
 [node name="PowerBar" type="Node3D"]
@@ -50,4 +50,5 @@ animations = [{
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7hb0j")
 autoplay = "default"
-frame_progress = 0.19422655
+frame = 8
+frame_progress = 1.0
