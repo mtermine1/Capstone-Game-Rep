@@ -99,7 +99,7 @@ func update_animation():
 
 func _on_hit_zone_body_entered(body):
 	if body.is_in_group("qb") and body.has_ball:
-		print("tackled qb")
+		print("sacked")
 		velocity = Vector3.ZERO
 		blitz_started = false
 		gm.end_play("tackle_qb", body.global_position)

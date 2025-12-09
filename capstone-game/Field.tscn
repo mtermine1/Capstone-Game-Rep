@@ -157,8 +157,8 @@ route_type = "fly"
 
 [node name="DefenderCover" parent="." node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 10.376906)
-cushion = 4.0
-reaction_time = 1.0
+cushion = 0.0
+reaction_time = 1.5
 blitz_delay = 6.0
 target = NodePath("../Receiver")
 qb = NodePath("../Quarterback")
