@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cr64oifdvch2i"]
+[gd_scene load_steps=33 format=3 uid="uid://cr64oifdvch2i"]
 
 [ext_resource type="PackedScene" uid="uid://degxoga3wq3oi" path="res://Quarterback.tscn" id="1_8j5rm"]
 [ext_resource type="Texture2D" uid="uid://b3lnb1rqkqr45" path="res://spritesandsuch/field/5m8846s5ix601.png" id="1_pmgfd"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmoychwdya5uk" path="res://Defender.tscn" id="3_m6s6n"]
 [ext_resource type="PackedScene" uid="uid://nqjoqpddi1vj" path="res://Game Manager.tscn" id="4_48t60"]
 [ext_resource type="Script" uid="uid://dleauuefeabih" path="res://follow_cam.gd" id="5_sl1x8"]
+[ext_resource type="Script" uid="uid://d0olkmme3pol5" path="res://line_of_scrimmage.gd" id="8_q764i"]
 [ext_resource type="PackedScene" uid="uid://crg2a4w0nkwok" path="res://Football.tscn" id="9_6tmj7"]
 [ext_resource type="Script" uid="uid://bvb0vl2fbx7gg" path="res://area_3d.gd" id="9_63o6r"]
 
@@ -88,6 +89,9 @@ size = Vector3(30, 0.2, 0.3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_u4cvj"]
 size = Vector3(30, 5, 0.1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_f2h2i"]
+size = Vector3(30, 20, 1)
+
 [node name="Field" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -144,45 +148,17 @@ mesh = SubResource("BoxMesh_8j5rm")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 10)
 mesh = SubResource("BoxMesh_8j5rm")
 
-[node name="Quarterback" parent="." instance=ExtResource("1_8j5rm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 15)
-aim_speed = 1.5
-max_throw_power = 30.0
-
-[node name="Receiver" parent="." node_paths=PackedStringArray("qb") instance=ExtResource("2_7sdab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 15)
-speed = 6.0
-qb = NodePath("../Quarterback")
-route_type = "fly"
-
-[node name="DefenderCover" parent="." node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 10.376906)
-cushion = 0.0
-reaction_time = 1.5
-blitz_delay = 6.0
-target = NodePath("../Receiver")
-qb = NodePath("../Quarterback")
-
-[node name="DefenderBlitz" parent="." node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06354594, 0.75, 8.328519)
-speed = 5.0
-reaction_time = 1.0
-blitz_delay = 5.0
-mode = "blitz"
-target = NodePath("../Quarterback")
-qb = NodePath("../Quarterback")
-
 [node name="Game Manager" parent="." node_paths=PackedStringArray("qb", "receiver") instance=ExtResource("4_48t60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.456778, 0, 10.544127)
-qb = NodePath("../Quarterback")
-receiver = NodePath("../Receiver")
+qb = NodePath("../LineOfScrimmage/Quarterback")
+receiver = NodePath("../LineOfScrimmage/Receiver")
 football_scene = ExtResource("9_6tmj7")
 
 [node name="FollowCam" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 6, 10)
 fov = 80.0
 script = ExtResource("5_sl1x8")
-target = NodePath("../Receiver")
+target = NodePath("../LineOfScrimmage/Receiver")
 distance = -7.0
 height = 3.0
 
@@ -224,10 +200,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26)
 shape = SubResource("BoxShape3D_6tmj7")
 
 [node name="LineOfScrimmage" type="Node3D" parent="."]
+script = ExtResource("8_q764i")
 
-[node name="Area3D" type="Area3D" parent="LineOfScrimmage" node_paths=PackedStringArray("gm")]
-script = ExtResource("9_63o6r")
-gm = NodePath("../../Game Manager")
+[node name="Area3D" type="Area3D" parent="LineOfScrimmage"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
@@ -243,5 +218,40 @@ collision_layer = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/LOSWall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12)
 shape = SubResource("BoxShape3D_u4cvj")
+
+[node name="Quarterback" parent="LineOfScrimmage" instance=ExtResource("1_8j5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 15)
+aim_speed = 1.5
+max_throw_power = 30.0
+
+[node name="Receiver" parent="LineOfScrimmage" node_paths=PackedStringArray("qb") instance=ExtResource("2_7sdab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 15)
+speed = 6.0
+qb = NodePath("../Quarterback")
+route_type = "fly"
+
+[node name="DefenderBlitz" parent="LineOfScrimmage" node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06354594, 0.75, 8.328519)
+speed = 5.0
+reaction_time = 1.0
+blitz_delay = 5.0
+mode = "blitz"
+target = NodePath("../Quarterback")
+qb = NodePath("../Quarterback")
+
+[node name="DefenderCover" parent="LineOfScrimmage" node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 10.376906)
+speed = 5.5
+cushion = 0.0
+reaction_time = 1.5
+blitz_delay = 6.0
+target = NodePath("../Receiver")
+qb = NodePath("../Quarterback")
+
+[node name="EndZoneQbPreventer" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EndZoneQbPreventer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
+shape = SubResource("BoxShape3D_f2h2i")
 
 [connection signal="body_entered" from="EndzoneB/Area3D" to="EndzoneB/Area3D" method="_on_body_entered"]

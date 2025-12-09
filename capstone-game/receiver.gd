@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var qb: Node3D
 @export var route_type: String = "curl"
 
-@onready var gm = GameManager 
+#@onready var gm = gm 
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
 var start_position: Vector3
@@ -18,8 +18,8 @@ var route_step := 0
 
 func _ready():
 	start_position = global_position
-	if gm:
-		set_route(gm.selected_route)
+	if GameManager:
+		set_route(GameManager.selected_route)
 
 
 func set_route(new_route: String):

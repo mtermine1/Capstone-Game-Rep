@@ -75,6 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="Camera" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 0.9975641, 0.06975647, 0, -0.06975647, 0.9975641, 0.1, 0.3654313, 0.1)
+current = true
 fov = 50.0
 
 [node name="PowerBar" type="AnimatedSprite3D" parent="Head/Camera"]

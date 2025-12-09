@@ -22,7 +22,7 @@ GameManager="*res://game_manager.gd"
 [display]
 
 window/size/no_focus=true
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [input]
 

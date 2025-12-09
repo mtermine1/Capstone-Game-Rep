@@ -49,7 +49,7 @@ func _physics_process(delta):
 		velocity = Vector3.ZERO
 		if Input.is_action_just_pressed("throw"):
 			play_started = true
-			gm.start_play()
+			GameManager.start_play()
 			print("Hike!")
 		move_and_slide()
 		return
