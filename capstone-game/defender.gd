@@ -117,6 +117,7 @@ func _on_catch_zone_body_entered(body):
 		has_ball = true
 		body.has_been_caught = true
 		body.queue_free()
+		get_tree().change_scene_to_file("res://intercepted.tscn")
 
 func play_run_animation(): sprite.play("run!")
 func play_idle_animation(): sprite.play("idle")
