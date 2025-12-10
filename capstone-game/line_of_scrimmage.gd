@@ -1,10 +1,14 @@
 extends Node3D
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	position.z = GameManager.ball_spot.z
-	
+	var gpos := global_position
+	gpos.z = GameManager.ball_spot.z
+	global_position = gpos
+
+	# Debug (temporary)
+	print("LOS placing at z =", GameManager.ball_spot.z)
+	print("LOS final global_position =", global_position)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

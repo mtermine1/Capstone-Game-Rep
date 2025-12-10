@@ -8,7 +8,8 @@
 radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tywm1"]
-radius = 0.9
+radius = 1.0
+height = 3.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c8k0s"]
 radius = 0.8
@@ -99,6 +100,7 @@ shape = SubResource("CapsuleShape3D_6vneq")
 [node name="HitZone" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13628936, 0)
 shape = SubResource("CapsuleShape3D_tywm1")
 
 [node name="CatchZone" type="Area3D" parent="."]

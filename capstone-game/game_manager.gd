@@ -6,8 +6,12 @@ extends Node3D
 
 var football: Node3D
 var ball_spot: Vector3 = Vector3.ZERO
-
 var selected_route: String = "curl"
+
+func initialize_first_snap():
+	if ball_spot == Vector3.ZERO and qb:
+		ball_spot = qb.global_position
+
 
 func start_play():
 	print("Play started")
