@@ -11,10 +11,11 @@ var selected_route: String = "curl"
 var current_try := 1
 var max_tries := 4
 
-@onready var try_label := $"../CanvasLayer/TryLabel"   # adjust if needed
+@onready var try_label := $"../TryLabel"
 
 func _ready():
-	update_try_label()
+		print("Try label is: ", try_label)
+		update_try_label()
 
 
 # --- TRY FUNCTIONS ---
@@ -87,6 +88,7 @@ func reset_play(ball_pos):
 
 
 func end_play(result: String, ball_position: Vector3 = Vector3.ZERO):
+	print("END PLAY TRIGGERED!")
 	match result:
 		"tackle_qb":
 			print("Play ends: QB tackled")
@@ -101,7 +103,8 @@ func end_play(result: String, ball_position: Vector3 = Vector3.ZERO):
 
 		"touchdown":
 			print("TOUCHDOWN")
+	next_try()
 
-
+	
 	reset_play(ball_spot)
 	
