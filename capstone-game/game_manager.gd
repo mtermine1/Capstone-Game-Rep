@@ -8,6 +8,32 @@ var football: Node3D
 var ball_spot: Vector3 = Vector3.ZERO
 var selected_route: String = "curl"
 
+var current_try := 1
+var max_tries := 4
+
+@onready var try_label := $"../CanvasLayer/TryLabel"   # adjust if needed
+
+func _ready():
+	update_try_label()
+
+
+# --- TRY FUNCTIONS ---
+func next_try():
+	current_try += 1
+
+	if current_try > max_tries:
+		print("OUT OF TRIES! Game Over")
+		# you can load a scene or show UI here:
+		# get_tree().change_scene_to_file("res://game_over.tscn")
+		return
+
+	update_try_label()
+
+
+func update_try_label():
+	if try_label:
+		try_label.text = "Try: %d/%d" % [current_try, max_tries]
+
 func initialize_first_snap():
 	if ball_spot == Vector3.ZERO and qb:
 		ball_spot = qb.global_position
@@ -78,3 +104,4 @@ func end_play(result: String, ball_position: Vector3 = Vector3.ZERO):
 
 
 	reset_play(ball_spot)
+	
