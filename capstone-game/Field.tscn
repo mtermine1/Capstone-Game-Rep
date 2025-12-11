@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmoychwdya5uk" path="res://Defender.tscn" id="3_m6s6n"]
 [ext_resource type="PackedScene" uid="uid://nqjoqpddi1vj" path="res://Game Manager.tscn" id="4_48t60"]
 [ext_resource type="Script" uid="uid://dleauuefeabih" path="res://follow_cam.gd" id="5_sl1x8"]
-[ext_resource type="Script" path="res://line_of_scrimmage.gd" id="8_q764i"]
+[ext_resource type="Script" uid="uid://d0olkmme3pol5" path="res://line_of_scrimmage.gd" id="8_q764i"]
 [ext_resource type="PackedScene" uid="uid://crg2a4w0nkwok" path="res://Football.tscn" id="9_6tmj7"]
 [ext_resource type="Script" uid="uid://bvb0vl2fbx7gg" path="res://area_3d.gd" id="9_63o6r"]
 
@@ -200,19 +200,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26)
 shape = SubResource("BoxShape3D_6tmj7")
 
 [node name="LineOfScrimmage" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 script = ExtResource("8_q764i")
 
 [node name="Area3D" type="Area3D" parent="LineOfScrimmage"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.172062)
 shape = SubResource("BoxShape3D_q764i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LineOfScrimmage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5663633)
 mesh = SubResource("BoxMesh_6tmj7")
 
 [node name="LOSWall" type="StaticBody3D" parent="LineOfScrimmage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3717499)
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/LOSWall"]
@@ -220,19 +222,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12)
 shape = SubResource("BoxShape3D_u4cvj")
 
 [node name="Quarterback" parent="LineOfScrimmage" instance=ExtResource("1_8j5rm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 4.362007)
 aim_speed = 1.5
 max_throw_power = 30.0
 
 [node name="Receiver" parent="LineOfScrimmage" node_paths=PackedStringArray("qb") instance=ExtResource("2_7sdab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 4.362007)
 speed = 5.0
 speed_after_catch = 5.0
 qb = NodePath("../Quarterback")
 route_type = "fly"
 
 [node name="DefenderBlitz" parent="LineOfScrimmage" node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06354594, 0.75, 8.328519)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06354594, 0.75, -2.309474)
 speed = 5.0
 reaction_time = 1.0
 blitz_delay = 5.0
@@ -241,8 +243,8 @@ target = NodePath("../Quarterback")
 qb = NodePath("../Quarterback")
 
 [node name="DefenderCover" parent="LineOfScrimmage" node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, 10.376906)
-speed = 5.3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, -0.26108646)
+speed = 5.0
 cushion = 0.0
 reaction_time = 1.5
 blitz_delay = 6.0

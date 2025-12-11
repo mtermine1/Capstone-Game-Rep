@@ -5,7 +5,7 @@ extends Node3D
 @export var football_scene: PackedScene
 
 var football: Node3D
-var ball_spot: Vector3 = Vector3.ZERO
+var ball_spot: Vector3 = Vector3(0,0,10)
 var selected_route: String = "curl"
 
 var current_try := 1

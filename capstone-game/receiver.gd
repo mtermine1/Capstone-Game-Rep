@@ -67,6 +67,7 @@ func update_animation():
 
 func run_route(delta):
 	if not running_route:
+		start_position = global_position
 		return
 
 	var forward = -transform.basis.z
@@ -106,7 +107,7 @@ func run_route(delta):
 			velocity.z = -forward.z * speed
 			if dist <= curl_forward - curl_return:
 				velocity = Vector3.ZERO
-				running_route = false
+				#running_route = false
 
 		update_animation()
 		return

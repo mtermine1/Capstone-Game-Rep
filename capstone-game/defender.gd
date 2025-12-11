@@ -18,6 +18,7 @@ var has_ball := false
 var reaction_timer := 0.0
 var blitz_timer := 0.0
 var blitz_started := false
+var receiver_in_range
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -55,6 +56,15 @@ func _physics_process(delta):
 
 	update_animation()
 	move_and_slide()
+	
+	if receiver_in_range:
+		if receiver_in_range.has_ball:
+			print("tackled wr")
+			velocity = Vector3.ZERO
+			blitz_started = false
+			GameManager.end_play("tackle_wr", receiver_in_range.global_position)
+			get_tree().change_scene_to_file("res://tackled!.tscn")
+			
 
 func run_man_coverage(delta):
 	reaction_timer += delta
@@ -105,12 +115,10 @@ func _on_hit_zone_body_entered(body):
 		GameManager.end_play("tackle_qb", body.global_position)
 		get_tree().change_scene_to_file("res://tackled!.tscn")
 
-	if body.is_in_group("wr") and body.has_ball:
-		print("tackled wr")
-		velocity = Vector3.ZERO
-		blitz_started = false
-		GameManager.end_play("tackle_wr", body.global_position)
-		get_tree().change_scene_to_file("res://tackled!.tscn")
+	if body.is_in_group("wr"): 
+		receiver_in_range = body
+
+		
 
 
 func _on_catch_zone_body_entered(body):
@@ -129,3 +137,8 @@ func _on_animated_sprite_3d_animation_finished(anim):
 	if anim == "ready" and qb and not qb.play_started:
 		sprite.frame = 1
 		sprite.playing = false
+
+
+func _on_hit_zone_body_exited(body: Node3D) -> void:
+	if body.is_in_group("wr"):
+		receiver_in_range = false
