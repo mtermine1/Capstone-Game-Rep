@@ -8,24 +8,24 @@ var football: Node3D
 var ball_spot: Vector3 = Vector3(0,0,10)
 var selected_route: String = "curl"
 
-var current_try := 1
+var current_try := 0
 var max_tries := 4
 
 @onready var try_label := $"../TryLabel"
 
 func _ready():
 		print("Try label is: ", try_label)
-		update_try_label()
+#		update_try_label()
 
 
 # --- TRY FUNCTIONS ---
 func next_try():
 	current_try += 1
+	print(current_try)
 
 	if current_try > max_tries:
 		print("OUT OF TRIES! Game Over")
-		# you can load a scene or show UI here:
-		# get_tree().change_scene_to_file("res://game_over.tscn")
+		
 		return
 
 	update_try_label()
