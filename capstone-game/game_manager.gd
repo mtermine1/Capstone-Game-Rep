@@ -8,13 +8,13 @@ var football: Node3D
 var ball_spot: Vector3 = Vector3(0,0,10)
 var selected_route: String = "curl"
 
-var current_try := 0
+var current_try := 1
 var max_tries := 4
 
-@onready var try_label := $"../TryLabel"
+#@onready var try_label := $"../TryLabel"
 
-func _ready():
-		print("Try label is: ", try_label)
+#func _ready():
+		#print("Try label is: ", try_label)
 #		update_try_label()
 
 
@@ -25,15 +25,15 @@ func next_try():
 
 	if current_try > max_tries:
 		print("OUT OF TRIES! Game Over")
-		
-		return
+		current_try = 1
+		#game over then after back to title screen
 
-	update_try_label()
+	#update_try_label()
 
 
-func update_try_label():
-	if try_label:
-		try_label.text = "Try: %d/%d" % [current_try, max_tries]
+#func update_try_label():
+	#if try_label:
+		#try_label.text = "Try: %d/%d" % [current_try, max_tries]
 
 func initialize_first_snap():
 	if ball_spot == Vector3.ZERO and qb:

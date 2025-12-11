@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cr64oifdvch2i"]
+[gd_scene load_steps=32 format=3 uid="uid://cr64oifdvch2i"]
 
 [ext_resource type="PackedScene" uid="uid://degxoga3wq3oi" path="res://Quarterback.tscn" id="1_8j5rm"]
 [ext_resource type="Texture2D" uid="uid://b3lnb1rqkqr45" path="res://spritesandsuch/field/5m8846s5ix601.png" id="1_pmgfd"]
@@ -6,11 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://coj1v3iois25q" path="res://spritesandsuch/field/grass map.png" id="2_vsbwo"]
 [ext_resource type="Texture2D" uid="uid://c2myklvi1psgy" path="res://spritesandsuch/field/grassy2.png" id="3_2prm6"]
 [ext_resource type="PackedScene" uid="uid://bmoychwdya5uk" path="res://Defender.tscn" id="3_m6s6n"]
-[ext_resource type="PackedScene" uid="uid://nqjoqpddi1vj" path="res://Game Manager.tscn" id="4_48t60"]
 [ext_resource type="Script" uid="uid://dleauuefeabih" path="res://follow_cam.gd" id="5_sl1x8"]
 [ext_resource type="Script" uid="uid://d0olkmme3pol5" path="res://line_of_scrimmage.gd" id="8_q764i"]
-[ext_resource type="PackedScene" uid="uid://crg2a4w0nkwok" path="res://Football.tscn" id="9_6tmj7"]
 [ext_resource type="Script" uid="uid://bvb0vl2fbx7gg" path="res://area_3d.gd" id="9_63o6r"]
+[ext_resource type="Script" uid="uid://dv0x45eetkvbk" path="res://try_label.gd" id="10_6tmj7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0m6is"]
 sky_top_color = Color(0.16647446, 0.47030658, 0.6991369, 1)
@@ -130,7 +129,7 @@ mesh = SubResource("BoxMesh_0m6is")
 
 [node name="Area3D" type="Area3D" parent="EndzoneB" node_paths=PackedStringArray("gm")]
 script = ExtResource("9_63o6r")
-gm = NodePath("../../Game Manager")
+gm = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EndzoneB/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
@@ -147,12 +146,6 @@ mesh = SubResource("BoxMesh_8j5rm")
 [node name="QuarterFieldLineB" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 10)
 mesh = SubResource("BoxMesh_8j5rm")
-
-[node name="Game Manager" parent="." node_paths=PackedStringArray("qb", "receiver") instance=ExtResource("4_48t60")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.456778, 0, 10.544127)
-qb = NodePath("../LineOfScrimmage/Quarterback")
-receiver = NodePath("../LineOfScrimmage/Receiver")
-football_scene = ExtResource("9_6tmj7")
 
 [node name="FollowCam" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 6, 10)
@@ -261,5 +254,6 @@ shape = SubResource("BoxShape3D_f2h2i")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22119, 0.447398, 5.324604)
 text = "Tries: 1/4"
 font_size = 100
+script = ExtResource("10_6tmj7")
 
 [connection signal="body_entered" from="EndzoneB/Area3D" to="EndzoneB/Area3D" method="_on_body_entered"]
