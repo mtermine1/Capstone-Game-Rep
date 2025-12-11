@@ -5,7 +5,6 @@ extends CharacterBody3D
 @export var qb: Node3D
 @export var route_type: String = "curl"
 
-#@onready var gm = gm 
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
 var start_position: Vector3
@@ -23,10 +22,14 @@ func _ready():
 
 
 func set_route(new_route: String):
+	rotation = Vector3.ZERO
 	route_type = new_route
 	route_step = 0
 	running_route = true
+	
+	await get_tree().process_frame
 	start_position = global_position
+
 
 func _physics_process(delta):
 	if qb and not qb.play_started:
@@ -66,6 +69,7 @@ func update_animation():
 	was_moving = is_moving
 
 func run_route(delta):
+	print(route_step)
 	if not running_route:
 		start_position = global_position
 		return
@@ -111,6 +115,7 @@ func run_route(delta):
 
 		update_animation()
 		return
+	print("forward = ", forward, "   right = ", right)
 
 func reset_receiver():
 	has_ball = false
