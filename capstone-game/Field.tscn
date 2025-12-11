@@ -256,6 +256,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
 shape = SubResource("BoxShape3D_f2h2i")
 
 [node name="TryLabel" type="Label3D" parent="EndZoneQbPreventer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22119, 0.447398, 5.324604)
 text = "Tries: 1/4"
+font_size = 100
 
 [connection signal="body_entered" from="EndzoneB/Area3D" to="EndzoneB/Area3D" method="_on_body_entered"]
