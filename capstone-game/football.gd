@@ -16,12 +16,11 @@ func _physics_process(delta):
 		# Check if it's the ground
 		if collider.is_in_group("ground"):
 			print("INCOMPLETE PASS – ball hit ground")
-
 			GameManager.end_play("incomplete")
-		if gm.current_try > gm.max_tries:
-			call_deferred("_goto_gameover")
-		else:
-			call_deferred("_goto_incomplete_pass_scene")
+			if GameManager.current_try > GameManager.max_tries:
+				call_deferred("_goto_gameover")
+			else:
+				call_deferred("_goto_incomplete_pass_scene")
 				
 
 			queue_free()

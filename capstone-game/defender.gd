@@ -63,10 +63,10 @@ func _physics_process(delta):
 			velocity = Vector3.ZERO
 			blitz_started = false
 			GameManager.end_play("tackle_wr", receiver_in_range.global_position)
-		if GameManager.current_try > GameManager.max_tries:
-			call_deferred("_goto_gameover")
-		else:
-			call_deferred("_goto_tackled_scene")
+			if GameManager.current_try > GameManager.max_tries:
+				call_deferred("_goto_gameover")
+			else:
+				call_deferred("_goto_tackled_scene")
 
 func run_man_coverage(delta):
 	reaction_timer += delta
