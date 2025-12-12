@@ -10,3 +10,5 @@ func _on_body_entered(body):
 	):
 		print("TOUCHDOWN DETECTED")
 		GameManager.end_play("touchdown", body.global_position)
+	return 
+	
