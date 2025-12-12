@@ -22,7 +22,6 @@ func _physics_process(delta):
 			else:
 				call_deferred("_goto_incomplete_pass_scene")
 				
-
 			queue_free()
 			
 			
