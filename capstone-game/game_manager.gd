@@ -55,11 +55,9 @@ func spawn_ball():
 	football.global_position = hand_pos
 
 func reset_game():
-	print("RESETTING GAME STATE")
-
+	ball_spot = Vector3(0,0,10)
 	current_try = 1
-	ball_spot = Vector3(0, 0, 10)  # ⬅️ your original LOS position
-	selected_route = "curl"
+	get_tree().change_scene_to_file("res://TITLESCREEN.tscn")
 
 func reset_play(ball_pos):
 	print(ball_pos)
@@ -69,29 +67,39 @@ func end_play(result: String, ball_position: Vector3 = Vector3.ZERO):
 	print("END PLAY TRIGGERED!")
 
 	match result:
+
 		"touchdown":
 			print("TOUCHDOWN")
 			_goto_touchdown()
-			return   # ⬅️ REQUIRED
-
-		"tackle_qb":
-			print("Play ends: QB tackled")
-			ball_spot = ball_position
-
-		"tackle_wr":
-			print("Play ends: WR tackled")
-			ball_spot = ball_position
+			return   # ⬅️ STOP EVERYTHING
 
 		"incomplete":
 			print("Play ends: INCOMPLETE")
-			if current_try >= max_tries:
-				_goto_gameover()
-				return
-			else:
-				_goto_incomplete_pass_scene()
 
-	next_try()
-	reset_play(ball_spot)
+			if current_try >= max_tries:
+				print("OUT OF TRIES! Game Over")
+				_goto_gameover()
+				return   # ⬅️ STOP EVERYTHING
+
+			# Game continues
+			next_try()
+			_goto_incomplete_pass_scene()
+			return
+
+		"tackle_qb", "tackle_wr":
+			print("Play ends:", result)
+			ball_spot = ball_position
+
+			if current_try >= max_tries:
+				print("OUT OF TRIES! Game Over")
+				_goto_gameover()
+				return   # ⬅️ STOP EVERYTHING
+
+			# Game continues
+			next_try()
+			reset_play(ball_spot)
+			return
+
 
 	
 func _goto_gameover():

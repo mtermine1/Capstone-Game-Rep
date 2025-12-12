@@ -79,7 +79,7 @@ sprite_frames = SubResource("SpriteFrames_k523o")
 autoplay = "default"
 
 [node name="Button" type="Button" parent="."]
-self_modulate = Color(1, 1, 1, 0.011764706)
+self_modulate = Color(1, 1, 1, 0)
 offset_left = 239.0
 offset_top = 217.0
 offset_right = 973.0
