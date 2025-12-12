@@ -113,13 +113,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jfly2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jfly2")
 }],
 "loop": false,
 "name": &"catch",
-"speed": 4.0
+"speed": 4.5
 }, {
 "frames": [],
 "loop": true,
@@ -219,6 +216,6 @@ transform = Transform3D(6.7, 0, 0, 0, 6.7, 0, 0, 0, 6.7, 0, 0, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2ywb6")
-animation = &"run-ball"
+animation = &"catch"
 
 [connection signal="body_entered" from="CatchZone" to="." method="_on_catch_zone_body_entered"]
