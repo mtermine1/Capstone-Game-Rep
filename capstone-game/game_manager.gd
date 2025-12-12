@@ -54,43 +54,26 @@ func spawn_ball():
 	var hand_pos = qb.global_position + Vector3(0, 1.3, 0)
 	football.global_position = hand_pos
 
+func reset_game():
+	print("RESETTING GAME STATE")
+
+	current_try = 1
+	ball_spot = Vector3(0, 0, 10)  # ⬅️ your original LOS position
+	selected_route = "curl"
 
 func reset_play(ball_pos):
 	print(ball_pos)
 	ball_spot = ball_pos
 	
-	##await get_tree().create_timer(0.1).timeout   # fade-out window
-#
-	#if receiver.has_method("reset_receiver"):
-		#receiver.reset_receiver()
-#
-	#var qb_pos = qb.global_position
-	#qb_pos.y = 1.0     # ← FIX: reposition QB above the ground
-	#qb_pos.z = ball_spot.z
-	#qb.global_position = qb_pos
-	#qb.global_position = qb_pos
-	#qb.play_started = false
-	#qb.velocity = Vector3.ZERO
-	#qb.has_ball = true
-#
-	#var wr_pos = receiver.global_position
-	#wr_pos.z = ball_spot.z
-	#receiver.global_position = wr_pos
-#
-	#for d in get_tree().get_nodes_in_group("defender"):
-		#if d.has_method("reset_defender"):
-			#d.reset_defender()
-#
-	#await get_tree().process_frame    # ← **required fix**
-	#spawn_ball()
-#
-	#print("Ready for next play")
-
-
-
 func end_play(result: String, ball_position: Vector3 = Vector3.ZERO):
 	print("END PLAY TRIGGERED!")
+
 	match result:
+		"touchdown":
+			print("TOUCHDOWN")
+			_goto_touchdown()
+			return   # ⬅️ REQUIRED
+
 		"tackle_qb":
 			print("Play ends: QB tackled")
 			ball_spot = ball_position
@@ -101,18 +84,15 @@ func end_play(result: String, ball_position: Vector3 = Vector3.ZERO):
 
 		"incomplete":
 			print("Play ends: INCOMPLETE")
-			if current_try > max_tries:
+			if current_try >= max_tries:
 				_goto_gameover()
+				return
 			else:
 				_goto_incomplete_pass_scene()
 
-		"touchdown":
-			print("TOUCHDOWN")
-			_goto_touchdown()
 	next_try()
-
-	
 	reset_play(ball_spot)
+
 	
 func _goto_gameover():
 	print("Switching to game over scene")
