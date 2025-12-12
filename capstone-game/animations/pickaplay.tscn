@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4mjsf4xfluph"]
+
+[ext_resource type="Texture2D" uid="uid://op41l471ov3h" path="res://Cut scenes or whateva/pickaplay.png" id="1_w5oik"]
+[ext_resource type="Script" uid="uid://b6s33v4xtpnrr" path="res://game_manager.gd" id="2_y60vn"]
+[ext_resource type="Script" uid="uid://b1goa0im7bc17" path="res://flybutton.gd" id="2_yca5m"]
+[ext_resource type="Script" uid="uid://bi84lkbjll8ge" path="res://curlbutton.gd" id="3_y60vn"]
+[ext_resource type="Script" uid="uid://c4de8m7i1d7xg" path="res://slantbutton.gd" id="4_uw0dt"]
+
+[node name="route selection" type="Node2D"]
+
+[node name="Pickaplay2" type="Sprite2D" parent="."]
+position = Vector2(-811, -343)
+scale = Vector2(1.6454544, 1.520084)
+texture = ExtResource("1_w5oik")
+
+[node name="Pickaplay" type="Sprite2D" parent="."]
+position = Vector2(584, 333.00003)
+scale = Vector2(0.41052157, 0.41052157)
+texture = ExtResource("1_w5oik")
+
+[node name="manager" type="Node3D" parent="." groups=["game_manager"]]
+script = ExtResource("2_y60vn")
+
+[node name="curl" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 397.0
+offset_top = 396.0
+offset_right = 771.0
+offset_bottom = 467.0
+script = ExtResource("3_y60vn")
+
+[node name="slant" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 395.0
+offset_top = 235.0
+offset_right = 776.0
+offset_bottom = 311.0
+script = ExtResource("4_uw0dt")
+
+[node name="fly" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 392.0
+offset_top = 547.0
+offset_right = 775.0
+offset_bottom = 621.0
+script = ExtResource("2_yca5m")

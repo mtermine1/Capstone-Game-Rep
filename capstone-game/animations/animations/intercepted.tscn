@@ -1,0 +1,80 @@
+[gd_scene load_steps=14 format=3 uid="uid://b8ywvj7oc3opx"]
+
+[ext_resource type="Texture2D" uid="uid://bj0ubbc1lmkb2" path="res://Cut scenes or whateva/intercepted/Untitled_Artwork-1 6.png" id="1_4vj6k"]
+[ext_resource type="Texture2D" uid="uid://c2h8ku6hb7vcl" path="res://Cut scenes or whateva/intercepted/Untitled_Artwork-2 6.png" id="2_yikf5"]
+[ext_resource type="Texture2D" uid="uid://40cxehnios8k" path="res://Cut scenes or whateva/intercepted/Untitled_Artwork-3 6.png" id="3_4xiax"]
+[ext_resource type="Texture2D" uid="uid://cbjd43y2u4l4f" path="res://Cut scenes or whateva/intercepted/Untitled_Artwork-4 6.png" id="4_tfssk"]
+[ext_resource type="Texture2D" uid="uid://b5lqg3cygjryf" path="res://Cut scenes or whateva/intercepted/Untitled_Artwork-5 6.png" id="5_62rid"]
+[ext_resource type="Texture2D" uid="uid://co65pdiigoos6" path="res://Cut scenes or whateva/intercepted/Untitled_Artwork-6 6.png" id="6_m5bix"]
+[ext_resource type="Texture2D" uid="uid://clutpu6sd1s8o" path="res://Cut scenes or whateva/intercepted/Untitled_Artwork-7 6.png" id="7_58ipa"]
+[ext_resource type="Texture2D" uid="uid://bmbp5cfotug4h" path="res://Cut scenes or whateva/intercepted/Untitled_Artwork-8 6.png" id="8_lnvec"]
+[ext_resource type="Texture2D" uid="uid://b8cpdqw10af1w" path="res://Cut scenes or whateva/intercepted/Untitled_Artwork-9 6.png" id="9_cbmxe"]
+[ext_resource type="Texture2D" uid="uid://8drbp2146p7c" path="res://Cut scenes or whateva/intercepted/Untitled_Artwork-10 3.png" id="10_y74fa"]
+[ext_resource type="Texture2D" uid="uid://co5gnsldcsyhw" path="res://Cut scenes or whateva/intercepted/Untitled_Artwork-11 3.png" id="11_lmmlh"]
+[ext_resource type="Script" uid="uid://do32gn0qtdmbe" path="res://posttacklebutton.gd" id="12_yikf5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pnys7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4vj6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yikf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4xiax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tfssk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_62rid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_m5bix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_58ipa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lnvec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cbmxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_y74fa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_lmmlh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="UntitledArtwork16" type="Sprite2D" parent="."]
+position = Vector2(-939.99994, 1800.9998)
+scale = Vector2(1.9857439, 2.3465226)
+texture = ExtResource("1_4vj6k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(575.3267, 320.24997)
+scale = Vector2(0.39559773, 0.39298558)
+sprite_frames = SubResource("SpriteFrames_pnys7")
+autoplay = "default"
+
+[node name="Button" type="Button" parent="AnimatedSprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_right = 0.09474522
+anchor_bottom = 0.059714485
+offset_left = -278.8861
+offset_top = -216.929
+offset_right = 155.1139
+offset_bottom = 48.071
+script = ExtResource("12_yikf5")
+metadata/_edit_use_anchors_ = true
