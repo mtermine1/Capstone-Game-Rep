@@ -27,6 +27,7 @@ func next_try():
 		print("OUT OF TRIES! Game Over")
 		current_try = 1
 		#game over then after back to title screen
+		get_tree().change_scene_to_file("res://gameover.tscn")
 
 	#update_try_label()
 
