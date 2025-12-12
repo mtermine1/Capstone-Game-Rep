@@ -1,15 +1,15 @@
 [gd_scene load_steps=15 format=3 uid="uid://degxoga3wq3oi"]
 
 [ext_resource type="Script" uid="uid://c7v7yeughi3p2" path="res://quarterback.gd" id="1_7t48y"]
-[ext_resource type="Texture2D" uid="uid://cvegqvwcf054x" path="res://animations/power bar animation 2/Untitled_Artwork-1 3.png" id="2_ec2go"]
-[ext_resource type="Texture2D" uid="uid://dicwiwa1no2kp" path="res://animations/power bar animation 2/Untitled_Artwork-2 3.png" id="3_rvo43"]
-[ext_resource type="Texture2D" uid="uid://bmv4rtxayqtb4" path="res://animations/power bar animation 2/Untitled_Artwork-3 3.png" id="4_t1wnp"]
-[ext_resource type="Texture2D" uid="uid://cym7ueo1ji7gw" path="res://animations/power bar animation 2/Untitled_Artwork-4 3.png" id="5_lo85v"]
-[ext_resource type="Texture2D" uid="uid://dee32emnr7tvh" path="res://animations/power bar animation 2/Untitled_Artwork-5 3.png" id="6_qwedk"]
-[ext_resource type="Texture2D" uid="uid://kj5joqtoex4a" path="res://animations/power bar animation 2/Untitled_Artwork-6 3.png" id="7_afvym"]
-[ext_resource type="Texture2D" uid="uid://bh0w1i8rsa2xh" path="res://animations/power bar animation 2/Untitled_Artwork-7 3.png" id="8_ag5gh"]
-[ext_resource type="Texture2D" uid="uid://d1u04fbrnavwy" path="res://animations/power bar animation 2/Untitled_Artwork-8 3.png" id="9_wmjel"]
-[ext_resource type="Texture2D" uid="uid://dxdeakiel0cqf" path="res://animations/power bar animation 2/Untitled_Artwork-9 3.png" id="10_l8w57"]
+[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-1 3.png" id="2_ec2go"]
+[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-2 3.png" id="3_rvo43"]
+[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-3 3.png" id="4_t1wnp"]
+[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-4 3.png" id="5_lo85v"]
+[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-5 3.png" id="6_qwedk"]
+[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-6 3.png" id="7_afvym"]
+[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-7 3.png" id="8_ag5gh"]
+[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-8 3.png" id="9_wmjel"]
+[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-9 3.png" id="10_l8w57"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7t48y"]
 radius = 0.7
@@ -79,7 +79,7 @@ current = true
 fov = 50.0
 
 [node name="PowerBar" type="AnimatedSprite3D" parent="Head/Camera"]
-transform = Transform3D(-0.04999655, 0.0005872978, 4.240995e-09, 0.00032990304, 0.028084878, -0.04136577, -0.0004858832, -0.041362934, -0.028086828, 0, 0.1, -1.636)
+transform = Transform3D(-0.049996547, 0.00058729766, 4.306388e-09, 0.0005430325, 0.04622838, -0.019042999, -0.00022368264, -0.019041704, -0.04623156, 0, 0.053448677, -1.6392541)
 sprite_frames = SubResource("SpriteFrames_bkl3l")
 animation = &"aim"
 autoplay = "aim"
