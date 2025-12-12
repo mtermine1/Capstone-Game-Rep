@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca1rl24dshjyi"]
+
+[ext_resource type="Texture2D" uid="uid://c2wn3yojxjdb8" path="res://spritesandsuch/Untitled_Artwork 8.png" id="1_7ls63"]
+[ext_resource type="Script" uid="uid://do32gn0qtdmbe" path="res://posttacklebutton.gd" id="2_h8hbf"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(574.50006, 327.87497)
+scale = Vector2(0.47809923, 0.39103717)
+texture = ExtResource("1_7ls63")
+
+[node name="Button" type="Button" parent="Sprite2D"]
+offset_left = 601.3395
+offset_top = 504.1082
+offset_right = 1218.3661
+offset_bottom = 844.2294
+script = ExtResource("2_h8hbf")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 100.0
+offset_right = 1152.0
+offset_bottom = 520.0
+theme_override_colors/font_color = Color(0.15686275, 0.05490196, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "In FOOTBALL MADNESS, you are thrust into the game winning play!
+The score is 17 - US v. 20 - THEM, and you get 4 tries to score a touchdown to win the game!
+First, you will pick a play, or choose a formation for your receiver to run. 
+Hike the ball/start the gameplay by hitting the space bar.
+Use the left and right arrow keys to aim the quarterback's throw towards the reciever.
+Hold down the spacebar to charge up the quarterback's throw in accordance with the 
+powerbar graphic. 
+release the spacebar to throw the bar at the receiver. 
+Once the receiver catches the ball, you will now play as the receiver!
+Use the arrow keys to run towards the endzone and score a touchdown. 
+An interception, incomplete pass or tackle will result in a failed trial, but just pick another
+play and try again!
+If you score a touchdown within 4 tries, you win!!
+
+
+"

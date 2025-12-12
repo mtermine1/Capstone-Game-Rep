@@ -1,0 +1,258 @@
+[gd_scene load_steps=32 format=3 uid="uid://cr64oifdvch2i"]
+
+[ext_resource type="PackedScene" uid="uid://degxoga3wq3oi" path="res://Quarterback.tscn" id="1_8j5rm"]
+[ext_resource type="Texture2D" uid="uid://b3lnb1rqkqr45" path="res://spritesandsuch/field/5m8846s5ix601.png" id="1_pmgfd"]
+[ext_resource type="PackedScene" uid="uid://d2r626ewshqui" path="res://Receiver.tscn" id="2_7sdab"]
+[ext_resource type="Texture2D" uid="uid://coj1v3iois25q" path="res://spritesandsuch/field/grass map.png" id="2_vsbwo"]
+[ext_resource type="Texture2D" uid="uid://c2myklvi1psgy" path="res://spritesandsuch/field/grassy2.png" id="3_2prm6"]
+[ext_resource type="PackedScene" uid="uid://bmoychwdya5uk" path="res://Defender.tscn" id="3_m6s6n"]
+[ext_resource type="Script" uid="uid://dleauuefeabih" path="res://follow_cam.gd" id="5_sl1x8"]
+[ext_resource type="Script" uid="uid://d0olkmme3pol5" path="res://line_of_scrimmage.gd" id="8_q764i"]
+[ext_resource type="Script" uid="uid://bvb0vl2fbx7gg" path="res://area_3d.gd" id="9_63o6r"]
+[ext_resource type="Script" uid="uid://dv0x45eetkvbk" path="res://try_label.gd" id="10_6tmj7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0m6is"]
+sky_top_color = Color(0.16647446, 0.47030658, 0.6991369, 1)
+sky_horizon_color = Color(0.93065536, 1.1004189, 1.0675664, 1)
+ground_bottom_color = Color(0.28866783, 0.6638899, 0.30364937, 1)
+ground_horizon_color = Color(0.93065536, 1.1004189, 1.0675664, 1)
+
+[sub_resource type="Sky" id="Sky_8j5rm"]
+sky_material = SubResource("ProceduralSkyMaterial_0m6is")
+
+[sub_resource type="Environment" id="Environment_7sdab"]
+background_mode = 2
+sky = SubResource("Sky_8j5rm")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0m6is"]
+size = Vector2(30, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8j5rm"]
+albedo_texture = ExtResource("1_pmgfd")
+albedo_texture_force_srgb = true
+normal_enabled = true
+normal_scale = 4.0
+normal_texture = ExtResource("2_vsbwo")
+bent_normal_texture = ExtResource("2_vsbwo")
+heightmap_enabled = true
+heightmap_scale = 0.18
+heightmap_texture = ExtResource("3_2prm6")
+uv1_scale = Vector3(20, 20, 20)
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7sdab"]
+size = Vector3(30, 0, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0m6is"]
+size = Vector3(5, 0.3, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sl1x8"]
+size = Vector3(5, 0.3, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pmgfd"]
+size = Vector3(5, 0.3, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8j5rm"]
+size = Vector3(0.3, 0.3, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vsbwo"]
+size = Vector3(2, 100, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_63o6r"]
+size = Vector3(0.3, 0.3, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2prm6"]
+size = Vector3(2, 100, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q764i"]
+size = Vector3(0.3, 0.3, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_63o6r"]
+size = Vector3(30, 100, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6tmj7"]
+size = Vector3(30, 100, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q764i"]
+size = Vector3(30, 0.2, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_63o6r"]
+albedo_color = Color(0.7315374, 0.69356596, 0.13013041, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6tmj7"]
+material = SubResource("StandardMaterial3D_63o6r")
+size = Vector3(30, 0.2, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u4cvj"]
+size = Vector3(30, 5, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f2h2i"]
+size = Vector3(30, 20, 1)
+
+[node name="Field" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7sdab")
+
+[node name="Ground" type="MeshInstance3D" parent="." groups=["ground"]]
+layers = 8
+mesh = SubResource("PlaneMesh_0m6is")
+surface_material_override/0 = SubResource("StandardMaterial3D_8j5rm")
+
+[node name="Ground Collission" type="StaticBody3D" parent="." groups=["ground"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground Collission"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("BoxShape3D_7sdab")
+debug_color = Color(0.7128054, 0.41881114, 0.6452741, 0.41960785)
+
+[node name="EndzoneA" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371138e-08, 0, -0.9999998, 0, 1, 0, 0.9999998, 0, -4.371138e-08, 0, 0, 22.5)
+mesh = SubResource("BoxMesh_0m6is")
+
+[node name="Area3D" type="Area3D" parent="EndzoneA"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EndzoneA/Area3D"]
+transform = Transform3D(0.99999994, 0, 3.5527137e-15, 0, 1, 0, -3.5527137e-15, 0, 0.99999994, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_sl1x8")
+debug_color = Color(0.7713369, 0.3802708, 0.60467803, 0.41960785)
+
+[node name="EndzoneB" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00015703589, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -0.00015703589, 0, 0, -22.5)
+mesh = SubResource("BoxMesh_0m6is")
+
+[node name="Area3D" type="Area3D" parent="EndzoneB"]
+script = ExtResource("9_63o6r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EndzoneB/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_pmgfd")
+
+[node name="MidfieldLine" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_8j5rm")
+
+[node name="QuarterFieldLineA" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -10)
+mesh = SubResource("BoxMesh_8j5rm")
+
+[node name="QuarterFieldLineB" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 10)
+mesh = SubResource("BoxMesh_8j5rm")
+
+[node name="FollowCam" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 6, 10)
+fov = 80.0
+script = ExtResource("5_sl1x8")
+target = NodePath("../LineOfScrimmage/Receiver")
+distance = -7.0
+height = 3.0
+
+[node name="Sideline2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sideline2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+shape = SubResource("BoxShape3D_vsbwo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sideline2"]
+mesh = SubResource("BoxMesh_63o6r")
+
+[node name="Sideline1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sideline1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+shape = SubResource("BoxShape3D_2prm6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sideline1"]
+layers = 5
+mesh = SubResource("BoxMesh_q764i")
+
+[node name="BoundaryEndZoneB" type="StaticBody3D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoundaryEndZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26)
+shape = SubResource("BoxShape3D_63o6r")
+
+[node name="BoundaryEndZoneA" type="StaticBody3D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoundaryEndZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26)
+shape = SubResource("BoxShape3D_6tmj7")
+
+[node name="LineOfScrimmage" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+script = ExtResource("8_q764i")
+
+[node name="Area3D" type="Area3D" parent="LineOfScrimmage"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.172062)
+shape = SubResource("BoxShape3D_q764i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LineOfScrimmage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5663633)
+mesh = SubResource("BoxMesh_6tmj7")
+
+[node name="LOSWall" type="StaticBody3D" parent="LineOfScrimmage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3717499)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/LOSWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12)
+shape = SubResource("BoxShape3D_u4cvj")
+
+[node name="Quarterback" parent="LineOfScrimmage" instance=ExtResource("1_8j5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 4.362007)
+aim_speed = 1.5
+max_throw_power = 30.0
+
+[node name="Receiver" parent="LineOfScrimmage" node_paths=PackedStringArray("qb") instance=ExtResource("2_7sdab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 4.362007)
+speed = 5.0
+speed_after_catch = 5.0
+qb = NodePath("../Quarterback")
+route_type = "fly"
+
+[node name="DefenderBlitz" parent="LineOfScrimmage" node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06354594, 0.75, -2.309474)
+speed = 5.0
+reaction_time = 1.0
+blitz_delay = 5.0
+mode = "blitz"
+target = NodePath("../Quarterback")
+qb = NodePath("../Quarterback")
+
+[node name="DefenderCover" parent="LineOfScrimmage" node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, -0.26108646)
+speed = 5.0
+cushion = 0.0
+reaction_time = 1.75
+blitz_delay = 6.0
+target = NodePath("../Receiver")
+qb = NodePath("../Quarterback")
+
+[node name="EndZoneQbPreventer" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EndZoneQbPreventer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
+shape = SubResource("BoxShape3D_f2h2i")
+
+[node name="TryLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22119, 0.447398, 5.324604)
+text = "Tries: 1/4"
+font_size = 100
+script = ExtResource("10_6tmj7")
+
+[connection signal="body_entered" from="EndzoneB/Area3D" to="EndzoneB/Area3D" method="_on_body_entered"]
