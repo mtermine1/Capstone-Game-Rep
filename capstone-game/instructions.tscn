@@ -26,7 +26,16 @@ theme_override_font_sizes/font_size = 26
 text = "In FOOTBALL MADNESS, you are thrust into the game winning play!
 The score is 17 - US v. 20 - THEM, and you get 4 tries to score a touchdown to win the game!
 First, you will pick a play, or choose a formation for your receiver to run. 
-You hike the ball or start the gameplay by hitting the space bar.
+Hike the ball/start the gameplay by hitting the space bar.
+Use the left and right arrow keys to aim the quarterback's throw towards the reciever.
+Hold down the spacebar to charge up the quarterback's throw in accordance with the 
+powerbar graphic. 
+release the spacebar to throw the bar at the receiver. 
+Once the receiver catches the ball, you will now play as the receiver!
+Use the arrow keys to run towards the endzone and score a touchdown. 
+An interception, incomplete pass or tackle will result in a failed trial, but just pick another
+play and try again!
+If you score a touchdown within 4 tries, you win!!
 
 
 "

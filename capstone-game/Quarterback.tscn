@@ -1,15 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://degxoga3wq3oi"]
+[gd_scene load_steps=14 format=3 uid="uid://degxoga3wq3oi"]
 
 [ext_resource type="Script" uid="uid://c7v7yeughi3p2" path="res://quarterback.gd" id="1_7t48y"]
-[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-1 3.png" id="2_ec2go"]
-[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-2 3.png" id="3_rvo43"]
-[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-3 3.png" id="4_t1wnp"]
-[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-4 3.png" id="5_lo85v"]
-[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-5 3.png" id="6_qwedk"]
-[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-6 3.png" id="7_afvym"]
-[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-7 3.png" id="8_ag5gh"]
-[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-8 3.png" id="9_wmjel"]
-[ext_resource type="Texture2D" path="res://animations/power bar animation 2/Untitled_Artwork-9 3.png" id="10_l8w57"]
+[ext_resource type="Texture2D" uid="uid://b0b64u16ftn1i" path="res://powerrrrbarrrrr/Untitled_Artwork-1 3.png" id="2_cxru8"]
+[ext_resource type="Texture2D" uid="uid://c2iwu80ua423y" path="res://powerrrrbarrrrr/Untitled_Artwork-2 3.png" id="3_ec2go"]
+[ext_resource type="Texture2D" uid="uid://ps0yena8uawe" path="res://powerrrrbarrrrr/Untitled_Artwork-3 3.png" id="4_rvo43"]
+[ext_resource type="Texture2D" uid="uid://cf1bxnslhy7pi" path="res://powerrrrbarrrrr/Untitled_Artwork-4 3.png" id="5_t1wnp"]
+[ext_resource type="Texture2D" uid="uid://c0cwpjqeim1op" path="res://powerrrrbarrrrr/Untitled_Artwork-6 3.png" id="6_lo85v"]
+[ext_resource type="Texture2D" uid="uid://dputiqwxs1jqg" path="res://powerrrrbarrrrr/Untitled_Artwork-7 3.png" id="7_qwedk"]
+[ext_resource type="Texture2D" uid="uid://bxqplkja6rp2l" path="res://powerrrrbarrrrr/Untitled_Artwork-8 3.png" id="8_afvym"]
+[ext_resource type="Texture2D" uid="uid://dff7g125b18sk" path="res://powerrrrbarrrrr/Untitled_Artwork-9 3.png" id="9_ag5gh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7t48y"]
 radius = 0.7
@@ -18,31 +17,28 @@ radius = 0.7
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ec2go")
+"texture": ExtResource("2_cxru8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_rvo43")
+"texture": ExtResource("3_ec2go")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_t1wnp")
+"texture": ExtResource("4_rvo43")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_lo85v")
+"texture": ExtResource("5_t1wnp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_qwedk")
+"texture": ExtResource("6_lo85v")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_afvym")
+"texture": ExtResource("7_qwedk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_ag5gh")
+"texture": ExtResource("8_afvym")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_wmjel")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_l8w57")
+"texture": ExtResource("9_ag5gh")
 }],
 "loop": false,
 "name": &"aim",
