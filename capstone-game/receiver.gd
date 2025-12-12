@@ -69,7 +69,6 @@ func update_animation():
 	was_moving = is_moving
 
 func run_route(delta):
-	print(route_step)
 	if not running_route:
 		start_position = global_position
 		return

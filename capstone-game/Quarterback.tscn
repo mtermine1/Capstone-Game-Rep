@@ -75,7 +75,7 @@ current = true
 fov = 50.0
 
 [node name="PowerBar" type="AnimatedSprite3D" parent="Head/Camera"]
-transform = Transform3D(-0.049996547, 0.00058729766, 4.306388e-09, 0.0005430325, 0.04622838, -0.019042999, -0.00022368264, -0.019041704, -0.04623156, 0, 0.053448677, -1.6392541)
+transform = Transform3D(-0.049996547, 0.0005872976, 4.3408033e-09, 0.00033246775, 0.028303215, -0.04121662, -0.00048413154, -0.041213807, -0.028305173, 0, 0.053448677, -1.6392536)
 sprite_frames = SubResource("SpriteFrames_bkl3l")
 animation = &"aim"
 autoplay = "aim"
