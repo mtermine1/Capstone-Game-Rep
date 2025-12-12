@@ -18,6 +18,19 @@ func _physics_process(delta):
 			print("INCOMPLETE PASS – ball hit ground")
 
 			GameManager.end_play("incomplete")
-			get_tree().change_scene_to_file("res://incomplete!.tscn")
+		if gm.current_try > gm.max_tries:
+			call_deferred("_goto_gameover")
+		else:
+			call_deferred("_goto_incomplete_pass_scene")
+				
 
 			queue_free()
+			
+			
+func _goto_gameover():
+	if get_tree():
+		get_tree().change_scene_to_file("res://gameover.tscn")
+
+func _goto_incomplete_pass_scene():
+	if get_tree():
+		get_tree().change_scene_to_file("res://incomplete_pass.tscn")

@@ -63,8 +63,10 @@ func _physics_process(delta):
 			velocity = Vector3.ZERO
 			blitz_started = false
 			GameManager.end_play("tackle_wr", receiver_in_range.global_position)
-			get_tree().change_scene_to_file("res://tackled!.tscn")
-			
+		if GameManager.current_try > GameManager.max_tries:
+			call_deferred("_goto_gameover")
+		else:
+			call_deferred("_goto_tackled_scene")
 
 func run_man_coverage(delta):
 	reaction_timer += delta
@@ -113,7 +115,12 @@ func _on_hit_zone_body_entered(body):
 		velocity = Vector3.ZERO
 		blitz_started = false
 		GameManager.end_play("tackle_qb", body.global_position)
-		get_tree().change_scene_to_file("res://tackled!.tscn")
+		GameManager.next_try()
+
+		if GameManager.current_try > GameManager.max_tries:
+			call_deferred("_goto_gameover")
+		else:
+			call_deferred("_goto_tackled_scene")
 
 	if body.is_in_group("wr"): 
 		receiver_in_range = body
@@ -126,9 +133,15 @@ func _on_catch_zone_body_entered(body):
 		print("Interception!")
 		has_ball = true
 		body.has_been_caught = true
-		body.queue_free()
 		GameManager.next_try()
-		get_tree().change_scene_to_file("res://intercepted.tscn")
+
+		if GameManager.current_try > GameManager.max_tries:
+			call_deferred("_goto_gameover")
+		else:
+			call_deferred("_goto_intercept_scene")
+
+		body.queue_free()
+
 
 func play_run_animation(): sprite.play("run!")
 func play_idle_animation(): sprite.play("idle")
@@ -139,7 +152,19 @@ func _on_animated_sprite_3d_animation_finished(anim):
 		sprite.frame = 1
 		sprite.playing = false
 
-
+#new things im trying
 func _on_hit_zone_body_exited(body: Node3D) -> void:
 	if body.is_in_group("wr"):
 		receiver_in_range = false
+
+func _goto_gameover():
+	if get_tree():
+		get_tree().change_scene_to_file("res://gameover.tscn")
+
+func _goto_tackled_scene():
+	if get_tree():
+		get_tree().change_scene_to_file("res://tackled!.tscn")
+
+func _goto_intercept_scene():
+	if get_tree():
+		get_tree().change_scene_to_file("res://intercepted.tscn")

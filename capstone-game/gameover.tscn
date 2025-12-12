@@ -1,3 +1,107 @@
-[gd_scene format=3 uid="uid://bmx8wk08p8h4q"]
+[gd_scene load_steps=23 format=3 uid="uid://bmx8wk08p8h4q"]
+
+[ext_resource type="Texture2D" uid="uid://lg4w3aljje54" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-1 8.png" id="1_67poy"]
+[ext_resource type="Texture2D" uid="uid://cjdi82kkeshk" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-2 8.png" id="2_5ssru"]
+[ext_resource type="Texture2D" uid="uid://bsxc71vt87w3n" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-3 8.png" id="3_kywv1"]
+[ext_resource type="Texture2D" uid="uid://b6ui6hdfw1aj1" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-4 8.png" id="4_73j4r"]
+[ext_resource type="Texture2D" uid="uid://dvcjacjl04ysg" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-5 8.png" id="5_t7ny8"]
+[ext_resource type="Texture2D" uid="uid://nlg8uvelkl4a" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-6 8.png" id="6_tolcn"]
+[ext_resource type="Texture2D" uid="uid://b7o68q4pqfbx0" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-7 8.png" id="7_rfk0n"]
+[ext_resource type="Texture2D" uid="uid://cenjbkn15qto" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-8 8.png" id="8_o64fd"]
+[ext_resource type="Texture2D" uid="uid://d3o6u482vhsac" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-9 8.png" id="9_d6l0x"]
+[ext_resource type="Texture2D" uid="uid://bx2nob3wxr4to" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-10 5.png" id="10_ul33i"]
+[ext_resource type="Texture2D" uid="uid://iundm5ci38gr" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-11 5.png" id="11_ffm1n"]
+[ext_resource type="Texture2D" uid="uid://bc3fmyeupapnj" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-12 5.png" id="12_rfw1q"]
+[ext_resource type="Texture2D" uid="uid://ci4gwsxvakcee" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-13 5.png" id="13_fuo4b"]
+[ext_resource type="Texture2D" uid="uid://dg1rt8gvrwlwg" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-14 5.png" id="14_0rh64"]
+[ext_resource type="Texture2D" uid="uid://3e5e5spv2seh" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-15 5.png" id="15_l3r63"]
+[ext_resource type="Texture2D" uid="uid://domuc8iqhpyxr" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-16 5.png" id="16_gclwy"]
+[ext_resource type="Texture2D" uid="uid://bal5mbo7nrlyb" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-17 5.png" id="17_225wn"]
+[ext_resource type="Texture2D" uid="uid://cydiduybi2dbu" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-18 5.png" id="18_e3ck8"]
+[ext_resource type="Texture2D" uid="uid://bnjymhvlwbkeb" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-19 4.png" id="19_x6h7m"]
+[ext_resource type="Texture2D" uid="uid://cnagbcqimeffs" path="res://spritesandsuch/title screen/game ova/Untitled_Artwork-20 4.png" id="20_0xryv"]
+[ext_resource type="Script" uid="uid://blgg4hxb57es" path="res://gameovabutton.gd" id="21_5ssru"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j4dvo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_67poy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5ssru")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kywv1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_73j4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t7ny8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tolcn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rfk0n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_o64fd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_d6l0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ul33i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ffm1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_rfw1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fuo4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_0rh64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_l3r63")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_gclwy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_225wn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_e3ck8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_x6h7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_0xryv")
+}],
+"loop": false,
+"name": &"default",
+"speed": 3.0
+}]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(575.1079, 324.5)
+scale = Vector2(0.44124702, 0.39268583)
+sprite_frames = SubResource("SpriteFrames_j4dvo")
+autoplay = "default"
+
+[node name="gameovabutton" type="Button" parent="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -607.61414
+offset_top = -299.2214
+offset_right = 611.6576
+offset_bottom = 289.03513
+script = ExtResource("21_5ssru")
