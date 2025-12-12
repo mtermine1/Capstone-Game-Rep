@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cclatvahj306j" path="res://Cut scenes or whateva/touchdown fr/Untitled_Artwork-12 3.png" id="12_ms0er"]
 [ext_resource type="Texture2D" uid="uid://y7l3n6d8etqq" path="res://Cut scenes or whateva/touchdown fr/Untitled_Artwork-13 3.png" id="13_t0kxv"]
 [ext_resource type="Texture2D" uid="uid://d30xuwxkv42c" path="res://Cut scenes or whateva/touchdown fr/Untitled_Artwork-14 3.png" id="14_ud7ag"]
-[ext_resource type="Script" uid="uid://do32gn0qtdmbe" path="res://posttacklebutton.gd" id="15_wmfsp"]
+[ext_resource type="Script" uid="uid://dmaeb1a4gvix3" path="res://buttontowin.gd" id="15_f6td2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ihq8a"]
 animations = [{
@@ -100,5 +100,5 @@ offset_left = -275.89313
 offset_top = -170.52051
 offset_right = 158.10687
 offset_bottom = 94.47949
-script = ExtResource("15_wmfsp")
+script = ExtResource("15_f6td2")
 metadata/_edit_use_anchors_ = true
