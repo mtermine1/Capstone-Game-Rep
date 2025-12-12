@@ -5,4 +5,4 @@ func _ready() -> void:
 	self.pressed.connect(_on_pressed)
 
 func _on_pressed() -> void:
-	get_tree().change_scene_to_file("res://TITLESCREEN.tscn")
+	get_tree().change_scene_to_file("res://pickaplay.tscn")
