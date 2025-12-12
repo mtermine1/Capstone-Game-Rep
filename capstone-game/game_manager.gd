@@ -108,6 +108,7 @@ func end_play(result: String, ball_position: Vector3 = Vector3.ZERO):
 
 		"touchdown":
 			print("TOUCHDOWN")
+			_goto_touchdown()
 	next_try()
 
 	
@@ -120,3 +121,6 @@ func _goto_gameover():
 func _goto_incomplete_pass_scene():
 	print("Switching to incomplete pass scene")
 	get_tree().change_scene_to_file("res://incomplete!.tscn")
+
+func _goto_touchdown():
+	get_tree().change_scene_to_file("res://touchdown!.tscn")
