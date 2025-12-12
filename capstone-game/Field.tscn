@@ -196,13 +196,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 script = ExtResource("8_q764i")
 
 [node name="Area3D" type="Area3D" parent="LineOfScrimmage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.172062)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 shape = SubResource("BoxShape3D_q764i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LineOfScrimmage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5663633)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 mesh = SubResource("BoxMesh_6tmj7")
 
 [node name="LOSWall" type="StaticBody3D" parent="LineOfScrimmage"]
@@ -236,16 +237,17 @@ qb = NodePath("../Quarterback")
 
 [node name="DefenderCover" parent="LineOfScrimmage" node_paths=PackedStringArray("target", "qb") instance=ExtResource("3_m6s6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.819159, 0.75, -0.26108646)
-speed = 3.5
+speed = 3.8
 cushion = 1.0
 reaction_time = 2.0
 blitz_delay = 6.0
 target = NodePath("../Receiver")
 qb = NodePath("../Quarterback")
 
-[node name="EndZoneQbPreventer" type="StaticBody3D" parent="."]
+[node name="EndZoneQbPreventer" type="StaticBody3D" parent="LineOfScrimmage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EndZoneQbPreventer"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfScrimmage/EndZoneQbPreventer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
 shape = SubResource("BoxShape3D_f2h2i")
 
