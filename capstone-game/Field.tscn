@@ -217,7 +217,7 @@ shape = SubResource("BoxShape3D_u4cvj")
 [node name="Quarterback" parent="LineOfScrimmage" instance=ExtResource("1_8j5rm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 4.362007)
 aim_speed = 1.5
-max_throw_power = 30.0
+max_throw_power = 25.0
 
 [node name="Receiver" parent="LineOfScrimmage" node_paths=PackedStringArray("qb") instance=ExtResource("2_7sdab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, 4.362007)
