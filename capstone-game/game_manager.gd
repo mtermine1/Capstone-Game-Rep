@@ -101,6 +101,10 @@ func end_play(result: String, ball_position: Vector3 = Vector3.ZERO):
 
 		"incomplete":
 			print("Play ends: INCOMPLETE")
+			if current_try > max_tries:
+				_goto_gameover()
+			else:
+				_goto_incomplete_pass_scene()
 
 		"touchdown":
 			print("TOUCHDOWN")
@@ -109,3 +113,10 @@ func end_play(result: String, ball_position: Vector3 = Vector3.ZERO):
 	
 	reset_play(ball_spot)
 	
+func _goto_gameover():
+	print("Switching to game over scene")
+	get_tree().change_scene_to_file("res://gameover.tscn")
+
+func _goto_incomplete_pass_scene():
+	print("Switching to incomplete pass scene")
+	get_tree().change_scene_to_file("res://incomplete!.tscn")
