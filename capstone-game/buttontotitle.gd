@@ -6,4 +6,4 @@ func _ready() -> void:
 
 func _on_pressed() -> void:
 	GameManager.reset_game()   # ⬅️ ADD THIS
-	get_tree().change_scene_to_file("res://pickaplay.tscn")
+	get_tree().change_scene_to_file("res://TITLESREEN.tscn")
